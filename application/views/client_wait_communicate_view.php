@@ -64,7 +64,7 @@ $(document).ready(function() {
 		timeSearch.push("and");
 		timeSearch.push("datetime");
 		
-		timeSearch.push("clients_wait.add_time");
+		timeSearch.push("client_ctime");
 		
 		timeSearch.push(getDateString($('#start_ymd').attr('value'), $('#s_hour').val(),$('#s_min').val()));
 		timeSearch.push(getDateString($('#end_ymd').attr('value'), $('#e_hour').val(),$('#e_min').val()));
@@ -143,7 +143,7 @@ $(document).ready(function() {
 				{"mDataProp":"7"},
 				{"mDataProp":"8"}
 			],
-			"iDisplayLength": 9,
+			"iDisplayLength": 16,
 			"fnServerParams": function (aoData) {
 				var externData={ "name": "filterString", "value": "my_value" };
 				externData.value=filterString;

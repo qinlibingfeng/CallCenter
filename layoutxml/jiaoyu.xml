@@ -256,7 +256,7 @@
 		<item>
 			<id>client_birth</id>
 			<dbfield>client_birth</dbfield>
-			<type>1</type>
+			<type>8</type>
 			<name>出生年月:</name>
 			<colspan>1</colspan>
 			<lspace>0</lspace>

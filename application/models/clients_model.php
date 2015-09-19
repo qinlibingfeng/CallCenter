@@ -29,10 +29,6 @@ class Clients_model extends CI_Model
 	{
 		return $this->db->select('*')->from('clients')->where('client_id',$id)->get()->result_array();
 	}
-	function getby_orderid($id)
-	{
-		return $this->db->select('*')->from('order_form')->where('order_id',$id)->get()->result_array();
-	}
 	function update($id,$data)
 	{
 		return $this->db->update('clients', $data, array('client_id'=>$id));
@@ -117,7 +113,6 @@ class Clients_model extends CI_Model
 	
 	function insertToClientTmp($item)
 	{
-		
 		return $this->db->insert('clients_tmp',$item);
 	}
 	function insert_vicidial_list($client_id){

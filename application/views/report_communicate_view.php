@@ -21,14 +21,6 @@
 </style>
 
 <script>
-function startCall(callnum,callid){			
-		//alert("startCall:"+callnum);
-		window.parent.parent.document.getElementById('MDPhonENumbeR').value = callnum;
-		window.parent.parent.NeWManuaLDiaLCalLSubmiT("NEW");
-		//parent.startCalltoVici(callnum, callid);
-		//window.parent.parent.test();
-		
-	}
 $(document).ready(function() {
 	$('#agentId').attr('value','<?php echo $agentId?>');
 	
@@ -54,7 +46,6 @@ $(document).ready(function() {
 			$('#targetAgent').append("<option selected='selected' value='"+row.name_value+"'>"+row.name_text+"</option>");
 		
 	});
-	
 	function getSearchString(){		
 		$seachValue=$('#searchText').attr('value');			
 		var searchStr=[];
@@ -96,19 +87,6 @@ $(document).ready(function() {
 		filterString.searchText=searchStr;
 		return JSON.stringify(filterString);
 	}
-
-	//收听录音#####################################################
-	/*function listenvideo(location){
-		$("#listenrecord").attr("src",location);
-		 $("#createOrderForm-dialog").dialog(
-		 {	
-			width:850,
-			height:520,	
-			
-		 }); 
-	}*/
-
-	//收听录音#####################################################
 	
 	createTables=function (filterString){
 		
@@ -127,10 +105,6 @@ $(document).ready(function() {
 			  	$('td:eq(5)', nRow).html('接通');
 			  else 
 			  	$('td:eq(5)', nRow).html('未接通');	
-
-			   //$('td:eq(2)', nRow).html("<a  href='<?php echo site_url('communicate/connected/callEvent/1/0/"+aData[2]+"/')?>'>"+aData[2]+"</a>");
-			   
-			   $('td:eq(2)',nRow).html('<a  href="javascript:;" onclick = "startCall(\''+aData[2]+'\',\''+$('#agentId').attr("value")+'\')">'+aData[2]+'<img src="www/images/dxzx.png"></a>');
 			  
 			  $('td:eq(10)', nRow).html("<a href='javascript:listenRecord(\""+aData[10]+"\")'>收听</a>&nbsp;<a href='"+aData[10]+"'>下载</a>");
 			 
@@ -218,43 +192,36 @@ $(document).ready(function() {
          <div class="nav_other"></div>
 	</div>
     <div class="func-panel">
-		  <div class="left" width="100%">
+		  <div class="left">
           	电话号码：<input type="text" id="phoneNumberText"> 
             呼叫类型: <select id="callType"><option value="-1" selected="selected">全部</option><option value="callout">呼出</option><option value="callin">呼入</option></select> 
             呼叫状态: <select id="callStatus"><option value="ALL" selected="selected" >全部</option><option value="CONNECTED">接通</option><option value="NOCONNECTED">未接通</option></select>  
             
             <input type="button" id="btnSearch" value="搜索" class="btnSearch"/>
-            从<input type="text" name="start_ymd"   id="start_ymd" value="" style="width:auto"/>
-        	<?php echo form_dropdown('s_hour',$beginTime['hourOptions'],$beginTime['hourDef'],'id="s_hour"')?><?php echo form_dropdown('s_min',$beginTime['minOptions'],$beginTime['minDef'],'id="s_min"')?>到<input type="text" name="end_ymd"   id="end_ymd" value="" style="width:quto"/>
+            从<input type="text" name="start_ymd"   id="start_ymd" value="" style="width:80px"/>
+        	<?php echo form_dropdown('s_hour',$beginTime['hourOptions'],$beginTime['hourDef'],'id="s_hour"')?><?php echo form_dropdown('s_min',$beginTime['minOptions'],$beginTime['minDef'],'id="s_min"')?>到<input type="text" name="end_ymd"   id="end_ymd" value="" style="width:80px"/>
         	<?php echo form_dropdown('e_hour',$endTime['hourOptions'],$endTime['hourDef'],'id="e_hour"')?><?php echo form_dropdown('e_min',$endTime['minOptions'],$endTime['minDef'],'id="e_min"')?>   
 			 </div>
               坐席：<select id="targetAgent" name="targetAgent"></select>
 			 <div align='right' class="right" ></div>	
 			 <div style="clear:both;"></div>  
 	</div>	
-	<!--<div id="createOrderForm-dialog" title="订单"  style="display:none">
-		<iframe  id="listenrecord" width="100%">	
-		</iframe>
-	</div>-->
-
-
     <div id="example" style='display:block'>
           <table width="100%" cellpadding="0" cellspacing="0" border="0"  id="dataList" >
           		<thead>
-
-					<tr>
-                	  <th align="left" width="60px">坐席工号</th>
-                    <th align="left" width=auto>坐席名字</th>
-                    <th align="left" width=auto>对方电话</th>
-                    <th align="left" width=auto>对方姓名</th>
-                    <th	align="left" width=auto>类型</th>    
-                    <th	align="left" width=auto>状态</th> 
-                    <th align="left" width="150px">开始时间</th>
-                    <th align="left" width=auto>通话时长</th>
-                    <th align="left" width=auto>排队时长</th>
-                    <th width="left" width=auto>400号码</th>
-                 	  <th width=auto>录音</th>
-                    </tr>                  
+                	<tr>
+                	  <th align="left" width="80px">坐席工号</th>
+                    <th align="left" width="80px">坐席名字</th>
+                    <th align="left" width="100px">对方电话</th>
+                    <th align="left" width="80px">对方姓名</th>
+                    <th	align="left" width="40px">类型</th>    
+                    <th	align="left">状态</th> 
+                    <th align="left" width="120px">开始时间</th>
+                    <th align="left" width="80px">通话时长</th>
+                    <th align="left" width="80px">排队时长</th>
+                    <th width="left" width="80px">400号码</th>
+                 	  <th width="60px">录音</th>
+                    </tr>               
                 </thead>
           </table>
       </div>

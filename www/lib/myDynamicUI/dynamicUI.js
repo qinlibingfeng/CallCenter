@@ -8,13 +8,10 @@
 		var $this=$(this);	
 		var opt=$.extend({},$.fn.dynamicui.defaults,options);
 		debug(opt);
-
-		//绘制元素
 		$.each(opt.elements,function(index,obj){
 			$this.find("tbody").append(addOneRow($this,obj));
 		});
 		
-		//自定义事件处理
 		custom(opt.elements);		
 	};
 	
@@ -47,8 +44,6 @@
 	
 	function addOneElement($this,$obj){
 		var htmlText="";
-		//console.log("1111111111111111111111");
-
 		if($obj.type === 1 || $obj.type === 3){	
 		
 			if($obj.id === 'client_phone' || $obj.id === 'client_cell_phone'){
@@ -89,6 +84,11 @@
 			}
 		}else if($obj.type === 7){
 			htmlText="<td class='dui-name'>"+$obj.name+"<a href='javascript:webCallPhone(\""+$obj.id+"\")'><img src='www/images/dxzx.png'></a>&nbsp;&nbsp;<a href='javascript:webVoipCallPhone(\""+$obj.id+"\")'>voip<img src='www/images/dxzx.png'></a></td><td  class='dui-value' colspan='"+$obj.colspan+"'> <input class='dui-control' id='"+$obj.id+"' type='text' value='"+$obj.value.defaultValue+"'></td>";
+		}else if($obj.type === 8){
+			htmlText+="<td class='dui-name'>"+$obj.name+"</td><td  class='dui-value' colspan='"+$obj.colspan+"'> <input class='dui-control' id='"+$obj.id+"' type='text' value='"+$obj.value.defaultValue+"'></td>";
+			
+		
+		
 		}
 			
 		for(var i=0; i<$obj.lspace; i++){	
@@ -99,6 +99,11 @@
 	}	
 	
 	function custom(elements){
+	
+			setDatePickerLanguageCn();
+		//给时间控件付初值
+			var ctime_now=new Date();
+			
 		$.each(elements,function(index,row){
 			$.each(row,function(index,elem){
 				if(elem.type === 3){
@@ -106,6 +111,9 @@
 				}else if(elem.type === 6){
 					var setting={view:{dblClickExpand: false},data:{simpleData: {enable: true}},callback: {beforeClick: beforeClick,onClick:onTreeClickAllValue}};
 					customTreeElem(elem,setting);
+				}else if(elem.type === 8){
+					//$("#"+elem.id).attr('value', ctime_now.format('yyyy-MM-dd'));	
+					$("#"+elem.id).datepicker(); 
 				}
 			});
 		});
@@ -134,7 +142,6 @@
 	function onTreeClickAllValue(){
 		var zTree = $.fn.zTree.getZTreeObj(getSelectedId()+"tree"),
 		nodes = zTree.getSelectedNodes(),
-
 		v = "";
 		nodes.sort(function compare(a,b){return a.id-b.id;});
 		var sNode=null;

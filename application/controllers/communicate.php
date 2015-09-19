@@ -196,19 +196,11 @@ class Communicate extends CI_Controller
 		$showAgents=$this->Users_model->getNameValueByIds($agents[3]);
 		$data['targetAgents']=$showAgents;
 		
-		
-		
 		if($from == 'manulClick'){				
-			
-			
+			$data['phoneNumber']='';
 			$data['uniqueid']='';
-			
 			$data['clientItem']=$this->Clients_model->getby_id($clientBh);	
-			
-			$phoneNumber=$data['clientItem'][0]['client_cell_phone'];
-			$data['phoneNumber']=$phoneNumber;
-			$this->load->model('Phone_model');
-			$data["gsd"]=$this->Phone_model->getPhoneAddress($phoneNumber);
+			$data["gsd"]="";
 			
 		}else if($from == 'callEvent'){			
 			$data['phoneNumber']=$phoneNumber;
@@ -232,11 +224,21 @@ class Communicate extends CI_Controller
 		
 		if(isset($data['clientItem'][0])){
 			$data['baseInfo']=$this->$modelName->getBaseInfoTableData($data['clientItem'][0]);
-			$data['bussniessInfo']=$this->$modelName->getBussniessInfoTableData($data['clientItem'][0]);
+			$data['loanInvestigate']=$this->$modelName->getLoanInvestigateTableData($data['clientItem'][0]);
+			$data['loanRecheck']=$this->$modelName->getLoanRecheckTableData($data['clientItem'][0]);
+			$data['loanCheck']=$this->$modelName->getLoanCheckTableData($data['clientItem'][0]);
+			$data['limitMaking']=$this->$modelName->getLimitMakingTableData($data['clientItem'][0]);
+			$data['loanGiveout']=$this->$modelName->getLoanGiveoutTableData($data['clientItem'][0]);
+			$data['loanRevisit']=$this->$modelName->getLoanRevisitTableData($data['clientItem'][0]);
 		}
 		else{
 			$data['baseInfo']=$this->$modelName->getBaseInfoTableData(array('client_phone'=>$phoneNumber));
-			$data['bussniessInfo']=$this->$modelName->getBussniessInfoTableData(array('client_phone'=>$phoneNumber));
+			$data['loanInvestigate']=$this->$modelName->getLoanInvestigateTableData(array('client_phone'=>$phoneNumber));
+			$data['loanRecheck']=$this->$modelName->getLoanRecheckTableData(array('client_phone'=>$phoneNumber));
+			$data['loanCheck']=$this->$modelName->getLoanCheckTableData(array('client_phone'=>$phoneNumber));
+			$data['limitMaking']=$this->$modelName->getLimitMakingTableData(array('client_phone'=>$phoneNumber));
+			$data['loanGiveout']=$this->$modelName->getLoanGiveoutTableData(array('client_phone'=>$phoneNumber));
+			$data['loanRevisit']=$this->$modelName->getLoanRevisitTableData(array('client_phone'=>$phoneNumber));
 		}
 		
 		$this->load->view('call_connect_view',$data);
@@ -246,27 +248,20 @@ class Communicate extends CI_Controller
 		header('Content-type: Application/json',true);
 		$req=$this->input->post();	
 		require('/var/www/html/config.php');
-		$status['ok']=false;
+		$status['ok']=false;	
 		//组织数据
-		//print_r($req);
-	
 		$item=$this->Communicate_model->getItemsFromReq($req);
 		$this->firephp->info($item);
-		$ret=$this->Clients_model->getby_id($req['clientBh']);	
-		
-		
+		$ret=$this->Clients_model->getby_id($req['clientBh']);			
 		if($ret){	
 
 			$sql="select list_id from ".$db_config["database"].".vicidial_lists where campaign_id='".$req['campaignId']."';";
-		
 			$list=$this->Clients_model->getData($sql)->result_array();
 			//echo $list[0]['list_id'];
-			
 
 			$sql="select client_cell_phone from ".$db_config["database2"].".clients where client_id='".$ret[0]['client_id']."';";
 			$row=$this->Clients_model->getData($sql)->result_array();
 			//print_r($row[0]['client_cell_phone']);
-			
 
 			//存在更新客户信息
 			$this->Clients_model->update($ret[0]['client_id'],$item['client']);
@@ -282,9 +277,7 @@ class Communicate extends CI_Controller
 
 			$status['ok']=true;
 			$clientId=$ret[0]['client_id'];		
-		}else{	
-			
-		
+		}else{		
 			//不存在新建客户信息
 			$item['client']['client_agent']=$req['agentId'];
 			$item['client']['client_creater']=$req['agentId'];
@@ -292,7 +285,6 @@ class Communicate extends CI_Controller
 			$clientId=$this->Clients_model->insert($item['client']);
 
 			//$this->Clients_model->insert_vicidial_list($clientId);
-
 			$sql="select list_id from ".$db_config["database"].".vicidial_lists where campaign_id='".$req['campaignId']."';";
 			$row=$this->Clients_model->getData($sql)->result_array();
 			$ssh=$this->Clients_model->syn_comment_insert_list($item['client'],$row[0]['list_id']);
@@ -303,9 +295,6 @@ class Communicate extends CI_Controller
 		
 		//如果有沟通，插入沟通信息到bill表
 		if($req['uniqueid'] != "0" && $req['uniqueid'] !=""){
-
-			//print_r($req);
-
 			$bill['bill_uniqueid']=$req['uniqueid'];
 			$bill['bill_client_id']=$clientId;
 			$bill['bill_stime']=date("Y-m-d H:i:s");
@@ -321,10 +310,6 @@ class Communicate extends CI_Controller
 			$sql="delete from clients_wait where client_id='$clientId'";
 			$this->db->query($sql);
 		}
-		//沟通保存之后
-		$sql="update cc_call_history  set alloted= 'Y' where phone_number='".$item['client']['client_cell_phone']."'";
-		$this->db->query($sql);
-		
 		echo json_encode($status);
 	}
 	
@@ -362,10 +347,10 @@ class Communicate extends CI_Controller
 		$phone=$req['phone'];
 		$cellPhone=$req['cellPhone'];
 		
-		$aColumns = array('agent','phone_number','call_type','link_stime','bill_stime','bill_note','location');
+		$aColumns = array('agent','phone_number','call_type','call_stime','bill_stime','bill_note','location');
 		
 		$sLimit=$this->datatabes_helper->getPageSql($req);
-		$sOrder=$this->datatabes_helper->getOrderSql($req,$aColumns,'link_stime','desc');
+		$sOrder=$this->datatabes_helper->getOrderSql($req,$aColumns,'call_stime','desc');
 		
 		if($cellPhone != "" && $cellPhone[0] == '0'){
 			$cellPhone=substr($cellPhone,1);
@@ -375,7 +360,7 @@ class Communicate extends CI_Controller
 			$phone=substr($phone,1);
 		}
 		
-		$sTable="cc_call_history left join bill on uniqueid = bill_uniqueid";
+		$sTable="cc_call_history left join bill on call_id=bill_uniqueid";
 		$sWhere="where status = 'CONNECTED' ";
 		if($phone != "" && $cellPhone != ""){
 			$sWhere.=" and (phone_number='$phone' or phone_number='0$phone' or phone_number='0$cellPhone' or phone_number='$cellPhone')";
@@ -391,7 +376,6 @@ class Communicate extends CI_Controller
 		$sWhere
 		$sOrder
 		$sLimit ";
-		//echo $sQuery."\n";
 		
 		$this->firephp->info($sQuery);
 		
@@ -405,16 +389,29 @@ class Communicate extends CI_Controller
 			
 		}
 		*/
-
-		
-
 		$output["aaData"]=$this->datatabes_helper->reverseResult($ret->result_array(),$aColumns);
 		$this->firephp->info($output["aaData"]);
 		$sCount="select count(*) as sCount from $sTable $sWhere $sOrder";
 		$ret=$this->db->query($sCount)->result_array();
-		//print_r($output["aaData"]);
+		
 		$output["iTotalRecords"]=$output["iTotalDisplayRecords"]=$ret[0]["sCount"];
 		
 		echo json_encode($output);
+	}
+	
+	
+	function ajaxCommunicateSaveStep(){
+		header('Content-type: Application/json',true);
+		$req=$this->input->post();	
+		$status['ok']=false;	
+		//组织数据
+	
+		
+		$sql = "update clients set loan_steps = '".$req['loan_steps']."' where client_id = '".$req['clientId']."'";
+		$this->db->query($sql);
+		$status['ok']=true;	
+		
+
+		echo json_encode($status);
 	}
 }

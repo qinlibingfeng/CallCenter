@@ -205,20 +205,20 @@ body.gb{background-image:url(../images/f1.gif)}
 body.gb{background-color:#FFF;background-position:-1424px 0;background-repeat:repeat-y;min-width:680px}
 .gMbtn{display:none;width:164px;height:30px;background: url(../images/left_top_bg.jpg) no-repeat left top;cursor:pointer;position: relative;}
 .gMbtn a{display:block;height:36px}
-.gLe{ position:absolute;
-width:1170;
+.gLe{position: absolute;
+width:1200px;
 z-index: 1;
 padding:0px 0px;
+
 }
 
 #divMain{margin:0px 0px 0px 189px!important;margin:0px 0px 0px 186px;}
-.gFd{width:auto;margin:0px 0 0 0px;
+.gFd{width:120px;margin:0px 0 0 0px;
 	filter:Alpha(opacity=80);
 	-moz-opacity:0.8;
 	opacity:0.8;
 	float:left;
-	display:block;
-	background:bule;}
+	display:block;}
 .gfTit{height:29px;position:relative;background-position:-198px -1px;margin-bottom:2px;font-weight: bold; }
 a.gfName{position:absolute;top:10px;*top:12px;left:21px;font-weight:bold;font-size: 12px;}
 a.gfName:hover{text-decoration:none}a.clsFd{position:absolute;top:12px;right:12px;display:block;width:14px;height:14px;background-position:-532px -26px}a.clsFd:hover{background-position:-549px -26px}a.opnFd{position:absolute;top:12px;right:12px;display:block;width:14px;height:14px;background-position:-532px -40px}a.opnFd:hover{background-position:-549px -40px}.addFd{position:absolute;top:12px;right:10px;display:block;width:14px;height:14px;background-position:-568px -25px}a.addFd:hover{background-position:-588px -25px}

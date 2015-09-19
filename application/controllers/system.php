@@ -24,7 +24,6 @@ class System extends CI_Controller{
 		$config['total_rows'] = $users['total_num'];
 		$config['per_page'] = $limit;	
 		$config['uri_segment'] = 4;		
-		
 		$this->pagination->initialize($config);	
 		
 		
@@ -34,8 +33,6 @@ class System extends CI_Controller{
 		$data['list_data']=$users['results'];
 		$data['sort_order']=$sort_order;
 		$data['agentId']=$agentId;
-
-		
 		$this->load->view('user_view',$data);
 		
 	}

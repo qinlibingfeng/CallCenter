@@ -13,7 +13,6 @@
 <script type='text/javascript' src='www/lib/extenal.js'></script>
 <script type='text/javascript' src='www/lib/json2.js'></script>
 
-
 <style type="text/css" title="currentStyle">
 			@import "www/lib/dataTable/css/demo_page.css";
 			@import "www/lib/dataTable/css/demo_table.css";
@@ -72,13 +71,6 @@ $(document).ready(function() {
 			searchItem.push(agentSearch);
 		}
 		
-		
-		if($("#alloted").val() != "0" ){
-			var allotedSearch=["and","varchar","alloted",""];
-			allotedSearch[3]=$("#alloted").val();
-			searchItem.push(allotedSearch);
-		}
-		
 		var phoneNumberSearch=["likeand","varchar","phone_number",""];	
 		phoneNumberSearch[3]=$("#phoneNumberText").attr("value");
 		
@@ -106,10 +98,9 @@ $(document).ready(function() {
 				{"mDataProp":"3"},
 				{"mDataProp":"4"},
 				{"mDataProp":"5"},
-				{"mDataProp":"6"},
-				{"mDataProp":"7"}
+				{"mDataProp":"6"}
 			],
-			"iDisplayLength": 10,
+			"iDisplayLength": 15,
 			"fnServerParams": function (aoData) {
 				var externData={ "name": "filterString", "value": "my_value" };
 				externData.value=filterString;
@@ -137,121 +128,8 @@ $(document).ready(function() {
 			$("#csvUrl").html(res.fileName);					  							
 		});  	
 	});	
-	
-	//分配坐席
-	$("#btnAllot").click(function(){	
-
-		var req={}
-		var filterString=getSearchString();
-
-		$("#filterString").val(filterString);
-		
-		var agent_count = 0;
-		var agent_data;
-		
-		/*	
-		var diag =new Dialog("allot");
-		diag.Width = 620;
-		diag.Height = 320;
-	 	diag.Title = "选择分配坐席";
-
-		diag.URL = "<?php echo site_url('report/allotAgents')?>";
-		diag.show(); 	
-		*/
-		$.post("<?php echo site_url('report/ajaxGetAllAgents')?>",req,function(res){					
-			display_agents(res.data);				
-		},"JSON");
-		
-		$("#dialog-confirm").dialog("open");
-
-	  
-	  
-	});	
-	
-
-		
-	 // 初始化对话框
- $("#dialog-confirm").dialog(
- {
-     modal: true,             // 创建模式对话框
-     autoOpen: false,
-     width:540,
-		 //minHeight:320,
-		 height:420,
-
-     buttons: {
-         "确认": function() {
-         			subAllot();
-              $(this).dialog('close');
-              $("#btnSearch").click();
-         },
-         "取消": function() {
-             $(this).dialog('close');
-         }
-     }
- }); 
- 
-
-
-
-	$("#allselect").bind("click", function () {	
-  	$("[name = box]:checkbox").attr("checked", this.checked);
-  });
- 
- 	
 });
-
-function display_agents(list){ //显示字段名
-		$("#tb_agents  tr:not(:first)").empty();
-		$.each(list, function(index,values){	
-			var str = '<tr><td><input name="box" type="checkbox" value="' + values["code"] + '" /></td>';
-			str += '<td>'+values["code"]+'</td>';
-			str += '<td>'+values["name"]+'</td></tr>';
-			
-			$("#tb_agents tr:last").after(str);
-
-		});
-}
-function subAllot(){ 
-	//获取filting
-
-	var Req={"filterString":"", "agents":""};
-	Req.filterString=$("#filterString").val();
-	
-	//获取agents
-	var agentsdata = new Array();
-	$("input[name='box']").each(function(){
-
-    if ("checked" == $(this).attr("checked")) {
-          agentsdata.push($(this).val());
-          //alert($(this).val());
-    }
-  });
-	
-	//post
-  Req.agents=JSON.stringify(agentsdata);
-  //alert(agentsdata);
-  
-	$.post("<?php echo site_url('report/ajaxAllotMisscall')?>",Req,function(res){					
-		//alert(res.Remainder);
-		if(res.ok == 1){			
-			if(res.left == 0){
-				alert("分配完成！");
-			}else{
-				alert("分配完成！余数:"+res.left+" 条未分配，请重新选择 "+res.left+ " 名坐席进行分配。");			
-			}			
-		}
-	},"JSON");
-
-}
-	
 </script>    
-
-
-<style type="text/css">
-	#dialog-confirm{width:50%;float:center;margin-top:10px; margin-left:10px}
-</style>
-	
 </head>
 <body>
 <div><input type="hidden" value="" id="agentId"></div>
@@ -273,18 +151,9 @@ function subAllot(){
           
 			  
              	坐席：<select id="targetAgent" name="targetAgent"></select>
-             	分配状态：<select id="alloted" name="alloted">
-             							<option value="0" selected="">全部</option>
-													<option value="N">未分配</option>
-													<option value="Y">已分配</option>
-             						</select>
                 <input type="button" id="btnSearch" value="搜索" class="btnSearch"/>
                 <input type="button" id="btnExport" value="导出" class="btnSearch"/>
-                
                 <a id="csvUrl" href='export_datas/clients_09Apr12.csv'></a>
-                
-                
-                <input type="button" id="btnAllot" value="分配坐席" class="btnSearch"/>
 			 </div>
 			 <div align='right' class="right" ></div>	
 			 <div style="clear:both;"></div>  
@@ -301,26 +170,11 @@ function subAllot(){
                      <th width="left" width="80px">400号码</th>
 
                     <th align="left" width="120px">时间</th>
-                    <th align="left" width="80px">是否已分配</th>
                  	<!--th width="60px">操作</th-->
                     </tr>               
                 </thead>
           </table>
       </div>
 </div>
-
- <div id="dialog-confirm" title="选择坐席" style="display: none">
-    <input type="hidden" value="" id="filterString">
-		<div id="allot_content" >
-			<div>坐席列表：<input id="allselect" name="allselect" type="checkbox" />全选 </div>
-			<table id="tb_agents" class="dataTable">
-		
-			<tr><td><font size="4">选择</font></td><td><font size="4">坐席ID</font></td><td><font size="4">坐席名称</font></td></tr>
-			<tbody> </tbody>
-		
-			</table>
-		</div>
- </div>
- 
 </body>
 </html>

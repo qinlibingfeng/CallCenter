@@ -8,9 +8,9 @@ require("./inc/pub_func.php");
 <title> <?php echo $system_name ?></title>
 <link href="./css/main.css?v=<?php echo $today ?>" rel="stylesheet" type="text/css">
 <link href="./css/day.css" rel="stylesheet" type="text/css">
-
+<link href="./css/bootstrap.css" rel="stylesheet" type="text/css">
 <script src="./js/jquery-1.8.3.min.js"></script>
-
+<script  src="./js/jquery.ui.dialog.js"></script>
 <script src="./js/main.js?v=<?php echo $today ?>"></script>
 <script src="./js/pub_func.js?v=<?php echo $today ?>"></script>
 
@@ -457,109 +457,89 @@ function get_p_data1(types, lay_id){
 
 <div class="page_main">
   <table style="display:None" border="0" cellpadding="0" cellspacing="0" class="menu_list">
-  	<tr>
-        <td>
-        	<a href='javascript:void(0);' onclick="addTab('录音批处理1','/document/record/RecordSet.php','28')" class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false'  title="新建录音文件处理任务" ><img src="/images/icons/icons_54.png" style="margin-top:4px" /><b>处理任务1&nbsp;</b></a><a href='javascript:void(0);' onclick="addTab('查看处理日志','/document/record/RecordSetLog.php','set_log')"  class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false' priv="true" title="查看历史处理记录、未压缩记录处理" ><img src="/images/icons/icons_49.png" style="margin-top:4px" /><b>查看处理日志&nbsp;</b></a><a href='javascript:void(0);'  class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false'  onClick="truncate_record_log();" title="清空历史处理日志，将加快处理速度！"><img src="/images/icons/icons_55.png" style="margin-top:4px" /><b>清空处理日志&nbsp;</b></a>
-        </td>
-		</tr>
-	</table>
-  <table width="99%" border="0" align="center" cellpadding="0" class="blocktable" >
-		<tr>
-			<td>
-				<div id="opt_layer_1" class="opt_f_list">
-    			<form name="opt_form_1" id="opt_form_1">
-      			<div class="head"><strong class="">&nbsp;选择呼叫号码</strong><a href='javascript:void(0)' hidefocus='true' class="close" title="关闭" onclick="javascript:$('#opt_layer_1').fadeOut()"></a>
-      			</div>
-     				<ul id="opt_layer_1_list">
-        	 		<table width="100%" border="0" align="center" cellpadding=4 cellspacing=0>
-								<tr>
-							  	<td align="left" valign="top" class="check_items">
-							  		<table width="100%" border="0" align="center" cellpadding=2 cellspacing=0>
-								 
-								  		<tr>
-												<td width="22%" height="" align="right">电话号码：<br><span class="gray">最大支持1000个</span>
-												</td>
-												<td align="left" valign="middle">
-													<textarea name="phone_number2" id="phone_number2" cols="50" rows="5" style="height:160px" onchange="get_phone_count()" title="点击填写要查询的电话号码，单次查询最大支持1000个！">
-													</textarea>
-										  		<span class="red">※</span> 
-										  		<span id="phone_counts" style="color: #CC1B1B;font-family:Arial, Helvetica, sans-serif;font-size: 16px;">0</span> 行</td>
-								  		</tr>  
-										</table>
-									</td>
-								</tr>
+  <tr>
+        <td ><a href='javascript:void(0);' onclick="addTab('录音批处理1','/document/record/RecordSet.php','28')" class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false'  title="新建录音文件处理任务" ><img src="/images/icons/icons_54.png" style="margin-top:4px" /><b>处理任务1&nbsp;</b></a><a href='javascript:void(0);' onclick="addTab('查看处理日志','/document/record/RecordSetLog.php','set_log')"  class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false' priv="true" title="查看历史处理记录、未压缩记录处理" ><img src="/images/icons/icons_49.png" style="margin-top:4px" /><b>查看处理日志&nbsp;</b></a><a href='javascript:void(0);'  class='zPushBtn' hidefocus='true' tabindex='-1' onselectstart='return false'  onClick="truncate_record_log();" title="清空历史处理日志，将加快处理速度！"><img src="/images/icons/icons_55.png" style="margin-top:4px" /><b>清空处理日志&nbsp;</b></a></td>
+      </tr>
+    </table>
+    <table width="99%" border="0" align="center" cellpadding="0" class="blocktable" >
+            <tr>
+            <td>
+			
+
+<div id="opt_layer_1" class="opt_f_list">
+    <form name="opt_form_1" id="opt_form_1">
+      <div class="head"><strong class="">&nbsp;选择呼叫号码</strong><a href='javascript:void(0)' hidefocus='true' class="close" title="关闭" onclick="javascript:$('#opt_layer_1').fadeOut()"></a></div>
+      <ul id="opt_layer_1_list">
+         <table width="100%" border="0" align="center" cellpadding=4 cellspacing=0>
+					<tr>
+					  <td align="left" valign="top" class="check_items"><table width="100%" border="0" align="center" cellpadding=2 cellspacing=0>
+						 
+						  <tr>
+							<td width="22%" height="" align="right">电话号码：<br><span class="gray">最大支持1000个</span></td>
+							<td align="left" valign="middle"><textarea name="phone_number2" id="phone_number2" cols="50" rows="5" style="height:160px" onchange="get_phone_count()" title="点击填写要查询的电话号码，单次查询最大支持1000个！"></textarea>
+							  <span class="red">※</span> <span id="phone_counts" style="color: #CC1B1B;font-family:Arial, Helvetica, sans-serif;font-size: 16px;">0</span> 行</td>
+						  </tr>  
+						</table>
+						</td>
+					</tr>
 					
-							</table>
-      			</ul>
-      			<div class="bottom">
-			        <input type="button" name="" value="选 择" onclick="do_phone_number_list()" />
-			        <span style="margin-right:4px">
-			        	<input type="button" name="" value="关 闭" onclick="javascript:$('#opt_layer_1').fadeOut()" />
-			        </span>
-			       </div>
-    			</form>
-  			</div>
-        <fieldset>
-        	<legend> 
-        		<label onClick="show_div('search_list');" title="点击收缩/展开">查询选项</label>
-        	</legend>
-          <form action="" onSubmit=""  method="post" name="form1" id="form1">       
+				 </table>
+      </ul>
+      <div class="bottom">
+        <input type="button" name="" value="选 择" onclick="do_phone_number_list()" />
+        <span style="margin-right:4px">
+        <input type="button" name="" value="关 闭" onclick="javascript:$('#opt_layer_1').fadeOut()" />
+        </span></div>
+    </form>
+  </div>
+        <fieldset><legend> <label onClick="show_div('search_list');" title="点击收缩/展开">查询选项</label></legend>
+            <form action="" onSubmit=""  method="post" name="form1" id="form1">       
              <table width="100%" border="0" align="center"  cellspacing="0" id="search_list" class="search_table" >
             
                <tr>
                  <td width="10%"  align="right">被叫号码：</td>
-                 <td width="" >
-                 		<input name="phone_number_list" type="text" id="phone_number_list"  title="双击输入要查询的被叫号码" value="" size="14" readonly="readonly" onClick="" class="input_text2"/><a  class="sel_" hidefocus="fasle" href="javascript:void(0);" title="点击输入要查询的被叫号码" onClick=""></a>
-                 </td>
+                 <td width="" ><input name="phone_number_list" type="text" id="phone_number_list"  title="双击输入要查询的被叫号码" value="" size="14" readonly="readonly" onClick="" class="input_text2"/><a  class="sel_" hidefocus="fasle" href="javascript:void(0);" title="点击输入要查询的被叫号码" onClick=""></a></td>
 	
 					
 
-                	<!-- <td  align="right">坐席工号：</td>
-                 	<td ><input name="agent_name_list" type="text" class="input_text2" id="agent_name_list"  title="双击选择坐席工号" size="16" readonly="readonly"  onDblClick=""/><a class="sel_1" hidefocus="true" href="javascript:void(0);" title="点击选择坐席工号" onClick="">选择</a></td>-->
+                <!-- <td  align="right">坐席工号：</td>
+                 <td ><input name="agent_name_list" type="text" class="input_text2" id="agent_name_list"  title="双击选择坐席工号" size="16" readonly="readonly"  onDblClick=""/><a class="sel_1" hidefocus="true" href="javascript:void(0);" title="点击选择坐席工号" onClick="">选择</a></td>-->
 
-				 					<td  align="right">坐席工号：</td>
-				 					<td>
-				 						<select name="agent_name_list" class="agent_name_list" id="agent_name_list" >
-											<option value="" selected="selected" title="请填写坐席">请填写坐席</option>
-											 <?php
-												global $db_conn;	
-												$sql="select user,full_name from vicidial_users";
-												$rows=mysqli_query($db_conn,$sql);
-												$row_counts=mysqli_num_rows($rows);
-												$list_arr=array();
-									 
-											if ($row_counts!=0) {
-												while($rs= mysqli_fetch_array($rows)){ 
-											?>
-											<option value="<?php echo$rs["user"]; ?>"  title="<?php echo$rs["user"]; ?>"><?php echo$rs["user"]; ?></option>
-											<?php
-													//echo $rs["user"];
-												}
-											}
-											?>	
-										</select>		
-									</td>
+				 <td  align="right">坐席工号：</td>
+				 <td><select name="agent_name_list" class="agent_name_list" id="agent_name_list" >
+					<option value="" selected="selected" title="请填写坐席">请填写坐席</option>
+				 <?php
+					global $db_conn;	
+					$sql="select user,full_name from vicidial_users";
+					$rows=mysqli_query($db_conn,$sql);
+					$row_counts=mysqli_num_rows($rows);
+					$list_arr=array();
+		 
+				if ($row_counts!=0) {
+					while($rs= mysqli_fetch_array($rows)){ 
+				?>
+				<option value="<?php echo$rs["user"]; ?>"  title="<?php echo$rs["user"]; ?>"><?php echo$rs["user"]; ?></option>
+				<?php
+						//echo $rs["user"];
+					}
+				}
+				?>			
              
-			 						<td  align="right">业务活动：</td>
-							 		<td>
-							 			<select name="campaign_id" class="campaign_id" id="campaign_id" >
-	                    <option value="IVR_AIA" selected="selected" title="IVR_AIA">IVR_AIA</option>
-											<option value="edu" title="edu">edu</option>
-	                    <option value="vicitest" title="vicitest">vicitest</option>
-                    </select>
-       						</td>
-			  			 </tr>
+			 <td  align="right">业务活动：</td>
+			 <td><select name="campaign_id" class="campaign_id" id="campaign_id" >
+                    <option value="IVR_AIA" selected="selected" title="IVR_AIA">IVR_AIA</option>
+					<option value="edu" title="edu">edu</option>
+                    <option value="vicitest" title="vicitest">vicitest</option></select></td>
+			   </tr>
                
                <tr>
                  <td style="display:none" width="8%" align="right">存放目录：</td>
-                 <td style="display:none" >
-                 		<select name="record_path" class="s_option" id="record_path" >
-                    	<option value="path_cam" selected="selected" title="按业务放置同一目录">按业务放置同一目录</option>
-                    	<option value="path_cam_date" title="按业务分日期放置同一目录">按业务分日期放置同一目录</option>
-                    	<option value="path_date" title="按日期放置同一目录">按日期放置同一目录</option>
-                    	<option value="path_all" title="全部放置同一目录">全部放置同一目录</option>
-                    </select>
-                 </td>                
+                 <td style="display:none" ><select name="record_path" class="s_option" id="record_path" >
+                    <option value="path_cam" selected="selected" title="按业务放置同一目录">按业务放置同一目录</option>
+                    <option value="path_cam_date" title="按业务分日期放置同一目录">按业务分日期放置同一目录</option>
+                    <option value="path_date" title="按日期放置同一目录">按日期放置同一目录</option>
+                    <option value="path_all" title="全部放置同一目录">全部放置同一目录</option>
+                   </select></td>                
                                
       
                  <td align="right" style="display:none">
@@ -572,36 +552,36 @@ function get_p_data1(types, lay_id){
                       </li>
                     </ul> 
                  </td>
-				 				 <td  align="right">选定时间：</td>
+				 <td  align="right">选定时间：</td>
                  <td colspan="7"><?php select_date("");?></td>
             
 				
 
                  <td  align="right">
-                 	<input type="text" class="dis_none" name="call_date_type" id="call_date_type" value="call_date" />
-                 	<input type="text" class="dis_none" name="status" id="status" value="" />
-                 	<input type="text" class="dis_none" name="quality_status" id="quality_status" value="" />
-                 	<input type="text" class="dis_none" name="agent_list" id="agent_list" value="" />
+                 <input type="text" class="dis_none" name="call_date_type" id="call_date_type" value="call_date" />
+                 <input type="text" class="dis_none" name="status" id="status" value="" />
+                 <input type="text" class="dis_none" name="quality_status" id="quality_status" value="" />
+                 <input type="text" class="dis_none" name="agent_list" id="agent_list" value="" />
                 
 				 
-				 				 	<input type="text" class="dis_none" name="record_type" id="record_type" value="phone" />
-                 	<input type="text" class="dis_none" name="phone_lists" id="phone_lists" value="" />
-                 	<input type="text" class="dis_none" name="field_list" id="field_list" value="" />
-                 	<textarea  class="dis_none"  name="phone_number" id="phone_number" value="" ></textarea>&nbsp;&nbsp;
+				 <input type="text" class="dis_none" name="record_type" id="record_type" value="phone" />
+                 <input type="text" class="dis_none" name="phone_lists" id="phone_lists" value="" />
+                 <input type="text" class="dis_none" name="field_list" id="field_list" value="" />
+                 <textarea  class="dis_none"  name="phone_number" id="phone_number" value="" /></textarea>&nbsp;&nbsp;
 
-                 	<input type="button" name="form_submit" value="提交查询" onClick="check_form('search');" style="cursor:pointer" />
-                  <input type="reset" name="button" id="button" value="重置" />
-				   			 </td>
+                 <input type="button" name="form_submit" value="提交查询" onClick="check_form('search');" style="cursor:pointer" />
+                   <input type="reset" name="button" id="button" value="重置" />
+				   </td>
                </tr>
-             </table> 
+              </table> 
        
-          </form>
-        </fieldset> 
-				<div id="excels" style="height:22px; line-height:22px;"> 
-					<span id="excel_addr" style="height:22px;line-height:22px;"></span>
-					<span id="copy_result" style="height:22px; line-height:22px;margin-left:6px"></span>
-					<span id="info_txt" style="height:22px;line-height:22px;margin-left:6px"></span>
-				</div>
+            </form>
+          </fieldset> 
+
+        
+
+        
+         <div id="excels" style="height:22px; line-height:22px;"><span id="excel_addr" style="height:22px;line-height:22px;"></span><span id="copy_result" style="height:22px; line-height:22px;margin-left:6px"></span><span id="info_txt" style="height:22px;line-height:22px;margin-left:6px"></span></div>
         
         <table border="0" width="100%" align="center" cellpadding="0" cellspacing="0" class="dataTable" id="datatable" >
             <thead>
@@ -620,9 +600,9 @@ function get_p_data1(types, lay_id){
         </table>
 		
 					   
-     	</td>
-  	</tr>
- 	</table>  
+     </td>
+  </tr>
+ </table>  
 </div>
 
 

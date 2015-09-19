@@ -40,8 +40,6 @@ function startCall(callnum,callid){
 		
 }
 function onCallClick(name,url){	
-
-	//alert(url);
 	if(name !="")
 		window.parent.iAddTab(name,url);
 	else
@@ -132,11 +130,9 @@ $(document).ready(function() {
 				}
 			],
 			"fnCreatedRow": function( nRow, aData, iDataIndex ) {
-				
 			  // Bold the grade for all 'A' grade browsers 
 			 $('td:eq(8)', nRow).html(aData[8]+'['+aData[10]+']');
 			 var htmlStr='<center><a href="javascript:onCallClick(\''+aData[1]+'\',\'<?php echo site_url('communicate/connected')?>/manulClick/'+$('#agentId').attr('value')+'/'+aData[9]+'\')"><img src="www/images/dxzx.png"></img></a></center>';
-			 
 			 if(aData[3]){
 			 //	$('td:eq(3)',nRow).html('<a href="javascript:onClientUiCall(\''+$('#agentId').attr("value")+'\',\''+aData[3]+'\')">'+aData[3]+'<img src="www/images/dxzx.png"></a>voip<a href="javascript:onClientUiVoipCall(\''+$('#agentId').attr("value")+'\',\''+aData[3]+'\')"><img src="www/images/dxzx.png"></a>');
 			 		$('td:eq(3)',nRow).html('<a  href="javascript:;" onclick = "startCall(\''+aData[3]+'\',\''+$('#agentId').attr("value")+'\')">'+aData[3]+'<img src="www/images/dxzx.png"></a>');
@@ -145,7 +141,7 @@ $(document).ready(function() {
 			 if(aData[4]){
 			 	$('td:eq(4)',nRow).html('<a  href="javascript:;" onclick = "startCall(\''+aData[4]+'\',\''+$('#agentId').attr("value")+'\')">'+aData[4]+'<img src="www/images/dxzx.png"></a>');
 
-			//$('td:eq(4)',nRow).html('<a href="javascript:onClientUiCall(\''+$('#agentId').attr("value")+'\',\''+·[4]+'\')">'+aData[4]+'<img src="www/images/dxzx.png"></a>voip<a href="javascript:onClientUiVoipCall(\''+$('#agentId').attr("value")+'\',\''+aData[4]+'\')"><img src="www/images/dxzx.png"></a>');
+			//$('td:eq(4)',nRow).html('<a href="javascript:onClientUiCall(\''+$('#agentId').attr("value")+'\',\''+aData[4]+'\')">'+aData[4]+'<img src="www/images/dxzx.png"></a>voip<a href="javascript:onClientUiVoipCall(\''+$('#agentId').attr("value")+'\',\''+aData[4]+'\')"><img src="www/images/dxzx.png"></a>');
 			 }
 			 $('td:eq(9)', nRow).html(htmlStr);
     		},
@@ -154,7 +150,7 @@ $(document).ready(function() {
 				{"mDataProp":"3"},{"mDataProp":"4"},{"mDataProp":"5"},{"mDataProp":"6"},
 				{"mDataProp":"7"},{"mDataProp":"8"},{"mDataProp":"9"}
 			],
-			"iDisplayLength": 10,
+			"iDisplayLength": 14,
 			"fnServerParams": function (aoData) {
 				var externData={ "name": "filterString", "value": "my_value" };
 				externData.value=filterString;
@@ -213,7 +209,7 @@ $(document).ready(function() {
 		// var dbMap=openClientExportDialog();
 		 var req={"filterString":"","dbMap":[]};
 		 req.filterString=getSearchString();
-		 $("#csvUrl").html("");	
+		 $("#csvUrl").html("");			
 		 $.post("<?php echo site_url('export/ajaxClientExport')?>",req,function(res){	
 			$("#csvUrl").attr("href", res.path);
 			$("#csvUrl").html(res.fileName);					  							
@@ -233,16 +229,14 @@ $(document).ready(function() {
 	});
 	
 	$("#btnAddWaitComm").click(function(){
-		if(confirm("确定要添加选中的客户吗？")){		 
+		if(confirm("确定要添加选中的客户吗？")){
 			$ids=[];
-			var datas=getSelectedItem();		
+			var datas=getSelectedItem();
 			$req={'ids':[]};
 			$req.ids=datas;
 			$.post("<?php echo site_url('client/ajaxAddWaitComm')?>",$req,function(res){
-				if(res.ok)	
+				if(res.ok)
 					alert("添加成功");
-				else
-					alert("添加失败");
 			}); 		 
 		 }
 	});
@@ -250,7 +244,7 @@ $(document).ready(function() {
 		 if(confirm("确定要删除选中的客户吗？")){		 
 			$ids=[];
 			var datas=getSelectedItem();
-			for(var i in datas){			
+			for(var i in datas){
 				var $item=[];
 				$item.push('or');
 				$item.push('varchar');
@@ -258,18 +252,17 @@ $(document).ready(function() {
 				$item.push(datas[i]);	
 				$ids.push($item);
 			}
-			
 			$req={'ids':[],'campaignId':''};
 			$req.ids=$ids;
 			$req.campaignId=window.parent.parent.document.getElementById('vicidial_campaign_id').value;
 			$.post("<?php echo site_url('client/ajaxDeleteOneClient')?>",$req,function(res){
-				if(res.ok)	
-					refreashTable();									
-			}); 		 
+				if(res.ok)
+					refreashTable();
+			});
 		 }
 	});
 });
-</script>    
+</script>
 </head>
 <body scroll="auto">
 <input id='agentId' type="hidden" value="<?php  echo $agentId;?>">
@@ -281,7 +274,7 @@ $(document).ready(function() {
 	</div>
     <div class="func-panel">
 			 <div class="left"><input type="text" id="searchText">
-             时间类型<select id="stimeType" name="select"><option value="1">最后沟通时间</option><option value="0">导入时间</option></select>
+             时间类型<select id="stimeType" name="select"><option value="0">导入时间</option><option value="1">最后沟通时间</option></select>
           从
           <input type="text" name="start_ymd"   id="start_ymd" value="" style="width:80px"/>
          <?php echo form_dropdown('s_hour',$beginTime['hourOptions'],$beginTime['hourDef'],'id="s_hour"')?><?php echo form_dropdown('s_min',$beginTime['minOptions'],$beginTime['minDef'],'id="s_min"');?>

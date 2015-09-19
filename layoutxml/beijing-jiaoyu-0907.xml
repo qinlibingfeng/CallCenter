@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dynamicui>
+<clientSearchPanel>
+	<row>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>申请人姓名:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+		</item>
+		
+		<item>
+			<id>client_sfz</id>
+			<dbfield>client_sfz</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>身份证号:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource/>
+		</item>
+		
+		<item>
+			<id>loan_steps</id>
+			<dbfield>loan_steps</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>贷款状态:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>贷款环节</valuesource>
+		</item>
+
+
+		<item>
+			<id>is_pass_first_trail</id>
+			<dbfield>is_pass_first_trail</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>是否通过初审:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>是否</valuesource>
+		</item>
+		
+		
+		
+		<item>
+			<id>is_pass_investigate</id>
+			<dbfield>is_pass_investigate</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>是否通过支行调查:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>是否</valuesource>
+		</item>
+	</row>
+	<row>
+	
+		<item>
+			<id>is_pass_check</id>
+			<dbfield>is_pass_check</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>是否通过审查:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>is_pass_loan_check</id>
+			<dbfield>is_pass_loan_check</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>是否审批通过:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>是否</valuesource>
+		</item>
+			
+		<item>
+			<id>is_pass_loan_check</id>
+			<dbfield>is_pass_loan_check</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>是否审批通过:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>是否</valuesource>
+		</item>		
+		
+		<item>
+			<id>not_limit_making_reasion</id>
+			<dbfield>not_limit_making_reasion</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>未限时办结原因:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>未限时办结原因</valuesource>
+		</item>	
+		
+		<item>
+			<id>client_agent</id>
+			<dbfield>client_agent</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>坐席:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>坐席</valuesource>
+		</item>	
+	</row>
+</clientSearchPanel>
+<customSearchPanel>
+	<row>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>名字:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>状态</valuesource>
+		</item>
+		<item>
+			<id>client_zsstatus</id>
+			<dbfield>client_zsstatus</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>状态:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>状态</valuesource>
+		</item>	
+		<item>
+			<id>client_agent</id>
+			<dbfield>client_agent</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>坐席:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>坐席</valuesource>
+		</item>	
+		<item>
+			<id>client_bmqd</id>
+			<dbfield>client_bmqd</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>报表人:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>状态</valuesource>
+		</item>
+	</row>
+</customSearchPanel>
+
+<customBodyPanel>
+<item>
+	<id>client_name</id>
+	<dbfield>client_name</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>名字</name>
+</item>
+<item>
+	<id>client_sex</id>
+	<dbfield>client_sex</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>性别</name>
+</item>
+<item>
+	<id>client_ctime</id>
+	<dbfield>client_ctime</dbfield>
+	<align>left</align>
+	<width>180px</width>
+	<type>varchar</type>
+	<name>创建时间</name>
+</item>
+<item>
+	<id>client_zsstatus</id>
+	<dbfield>client_zsstatus</dbfield>
+	<align>left</align>
+	<width/>
+	<type>varchar</type>
+	<name>状态</name>
+</item>
+
+<item>
+	<id>client_address</id>
+	<dbfield>client_address</dbfield>
+	<align>left</align>
+	<width/>
+	<type>varchar</type>
+	<name>地址</name>
+</item>
+<item>
+	<id>client_agent</id>
+	<dbfield>client_agent</dbfield>
+	<align>left</align>
+	<width>60</width>
+	<type>varchar</type>
+	<name>坐席</name>
+</item>
+<item>
+	<id>client_bmqd</id>
+	<dbfield>client_bmqd</dbfield>
+	<align>left</align>
+	<width>60</width>
+	<type>varchar</type>
+	<name>报表人</name>
+</item>
+</customBodyPanel>
+<customClientStatusCount>
+	<item>
+		<dbfield>client_zsstatus</dbfield>
+		<valuesource>状态</valuesource>
+	</item>
+</customClientStatusCount>
+<importDBMap>		
+		<item>		
+			<dbfield>loan_steps</dbfield>
+			<name>贷款环节</name>	
+		</item> 
+		<item>		
+			<dbfield>client_agent</dbfield>
+			<name>所属坐席</name>	
+		</item> 		
+		
+		<item>		
+			<dbfield>client_cell_phone</dbfield>
+			<name>手机</name>	
+		</item> 
+		<item>		
+			<dbfield>client_name</dbfield>
+			<name>申请人姓名</name>	
+		</item>
+		<item>
+			<dbfield>client_sfz</dbfield>
+			<name>身份证号 </name>
+		</item>
+		<item>
+			<dbfield>client_address</dbfield>
+			<name>家庭地址</name>
+		</item>
+		<item>
+			<dbfield>loan_use</dbfield>
+			<name>贷款用途</name>
+		</item>
+		<item>
+			<dbfield>loan_mode</dbfield>
+			<name>贷款方式</name>
+		</item>	
+
+		<item>
+			<dbfield>loan_money</dbfield>
+			<name>申请金额 </name>
+		</item>
+		<item>
+			<dbfield>is_pass_first_trail</dbfield>
+			<name>是否通过初审 </name>
+		</item>	
+		<item>
+			<dbfield>not_pass_first_trail_reason</dbfield>
+			<name>未通过初审原因 </name>
+		</item>	
+		<item>
+			<dbfield>accept_sub_branch</dbfield>
+			<name>通知受理支行</name>
+		</item>	
+		<item>
+			<dbfield>accept_sub_branch_date</dbfield>
+			<name>通知支行日期</name>
+		</item>	
+		<item>
+			<dbfield>is_pass_investigate</dbfield>
+			<name>是否通过支行调查 </name>
+		</item>		
+		<item>
+			<dbfield>not_pass_reason</dbfield>
+			<name>支行调查未通过原因 </name>
+		</item>		
+		<item>
+			<dbfield>investigate_echo_date</dbfield>
+			<name>结果反馈日期</name>
+		</item>		
+		<item>
+			<dbfield>notify_danger_reinvestigate_date</dbfield>
+			<name>通知风险管理再调查日期</name>
+		</item>		
+		<item>
+			<dbfield>reinvestigate_result</dbfield>
+			<name>再调查结果 </name>
+		</item>		
+		<item>
+			<dbfield>not_pass_reinvestigate_nofify_date</dbfield>
+			<name>未通过调查结果通知客户日期</name>
+		</item>		
+		<item>
+			<dbfield>is_not_pass_reinvestigate_nofify</dbfield>
+			<name>未通过调查是否通知客户</name>
+		</item>		
+		<item>
+			<dbfield>is_pass_check</dbfield>
+			<name>是否通过审查 </name>
+		</item>		
+		<item>
+			<dbfield>is_pass_investigate</dbfield>
+			<name>是否通过支行调查 </name>
+		</item>		
+		<item>
+			<dbfield>not_pass_check_reason</dbfield>
+			<name>未通过审查原因 </name>
+		</item>		
+		<item>
+			<dbfield>not_pass_check_notify_date</dbfield>
+			<name>未通过审查结果通知客户日期</name>
+		</item>		
+		<item>
+			<dbfield>is_not_pass_check_notify</dbfield>
+			<name>未通过审查是否通知客户</name>
+		</item>		
+		
+		<item>
+			<dbfield>is_pass_loan_check</dbfield>
+			<name>是否审批通过 </name>
+		</item>	
+		<item>
+			<dbfield>loan_check_money</dbfield>
+			<name>审批金额（万元）</name>
+		</item>	
+		<item>
+			<dbfield>not_pass_loan_check_reason</dbfield>
+			<name>审批未通过原因 </name>
+		</item>	
+		<item>
+			<dbfield>loan_check_echo_date</dbfield>
+			<name>结果反馈日期</name>
+		</item>	
+		<item>
+			<dbfield>loan_check_notify_date</dbfield>
+			<name>通知客户日期</name>
+		</item>	
+		<item>
+			<dbfield>limit_making_date</dbfield>
+			<name>限时办结日期</name>
+		</item>	
+		<item>
+			<dbfield>not_limit_making_reasion</dbfield>
+			<name>未限时办结原因 </name>
+		</item>	
+		<item>
+			<dbfield>not_limit_making_expound</dbfield>
+			<name>具体说明</name>
+		</item>	
+		<item>
+			<dbfield>giveout_money</dbfield>
+			<name>发放金额（万元）</name>
+		</item>	
+		<item>
+			<dbfield>giveout_money_echo_date</dbfield>
+			<name>发贷反馈日期</name>
+		</item>	
+	
+</importDBMap>
+<baseInfoTable>
+	<row>	
+		<item>
+			<id>client_cell_phone</id>
+			<dbfield>client_cell_phone</dbfield>
+			<type>1</type>
+			<name>手机:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width/>
+			<height/>
+			<valuesource/>
+		</item>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<type>1</type>
+			<name>申请人姓名:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width/>
+			<height/>
+			<valuesource>0</valuesource>
+		</item>
+		<item>
+			<id>client_sfz</id>
+			<dbfield>client_sfz</dbfield>
+			<type>1</type>
+			<name>身份证号:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan/><lspace/>
+			<width/><height/>
+			<valuesource/>
+		</item>
+	</row>
+	<row>
+		<item>
+			<id>client_address</id>
+			<dbfield>client_address</dbfield>
+			<type>6</type>
+			<name>家庭地址:</name>
+			<colspan/><lspace/>
+			<width/><height/>
+			<valuesource/>
+		</item>
+		<item>
+			<id>loan_use</id>
+			<dbfield>loan_use</dbfield>
+			<type>1</type>
+			<name>贷款用途:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan/><lspace/>
+			<width/><height/>
+			<valuesource/>
+		</item>
+		<item>
+			<id>loan_mode</id>
+			<dbfield>loan_mode</dbfield>
+			<type>2</type>
+			<name>贷款方式:</name>
+			<colspan>贷款方式</colspan>
+			<lspace/>
+			<width/>
+			<height/>
+			<valuesource>贷款方式</valuesource>
+		</item>
+	</row>
+	<row>
+
+		<item>
+			<id>loan_money</id>
+			<dbfield>loan_money</dbfield>
+			<type>1</type>
+			<name>申请金额:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>申请金额</colspan><lspace/>
+			<width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>is_pass_first_trail</id>
+			<dbfield>is_pass_first_trail</dbfield>
+			<type>2</type>
+			<name>是否通过初审:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>是否通过初审</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>not_pass_first_trail_reason</id>
+			<dbfield>not_pass_first_trail_reason</dbfield>
+			<type>1</type>
+			<name>未通过初审原因:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>未通过初审原因</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>
+	<row>
+		<item>
+			<id>accept_sub_branch</id>
+			<dbfield>accept_sub_branch</dbfield>
+			<type>1</type>
+			<name>通知受理支行:&lt;font color="red"&gt;❈&lt;/font&gt;</name>
+			<colspan>通知受理支行</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>accept_sub_branch_date</id>
+			<dbfield>accept_sub_branch_date</dbfield>
+			<type>8</type>
+			<name>通知支行日期:</name>
+			<colspan>通知支行日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>		
+	</row>		
+	
+	<row>		
+		<item>
+			<id>loan_history</id>
+			<dbfield>loan_history</dbfield>
+			<type>2</type>
+			<name>有无贷款记录:</name>
+			<colspan>有无贷款记录</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>loan_history_money</id>
+			<dbfield>loan_history_money</dbfield>
+			<type>1</type>
+			<name>贷款余额:</name>
+			<colspan>贷款余额</colspan><lspace/>
+			<width/><height/><valuesource/>
+		</item>
+	</row>		
+	
+	<row>		
+		<item>
+			<id>loan_desp</id>
+			<dbfield>loan_desp</dbfield>
+			<type>5</type>
+			<name>情况描述:</name>
+			<colspan>情况描述</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+
+	</row>			
+	
+	
+	
+	
+</baseInfoTable>
+
+<loanInvestigateTable>
+<row>	
+		<item>
+			<id>is_pass_investigate</id>
+			<dbfield>is_pass_investigate</dbfield>
+			<type>2</type>
+			<name>是否通过支行调查:</name>
+			<colspan>是否通过支行调查</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>not_pass_reason</id>
+			<dbfield>not_pass_reason</dbfield>
+			<type>1</type>
+			<name>未通过原因:</name>
+			<colspan>未通过原因</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>investigate_echo_date</id>
+			<dbfield>investigate_echo_date</dbfield>
+			<type>8</type>
+			<name>结果反馈日期:</name>
+			<colspan>结果反馈日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>		
+	</row>
+	<row>		
+		<item>
+			<id>notify_danger_reinvestigate_date</id>
+			<dbfield>notify_danger_reinvestigate_date</dbfield>
+			<type>8</type>
+			<name>通知风险管理再调查日期:</name>
+			<colspan>通知风险管理再调查日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>reinvestigate_result</id>
+			<dbfield>reinvestigate_result</dbfield>
+			<type>1</type>
+			<name>再调查结果:</name>
+			<colspan>再调查结果</colspan>
+			<lspace/><width/>
+			<height/><valuesource/>
+		</item>
+
+		<item>
+			<id>not_pass_reinvestigate_nofify_date</id>
+			<dbfield>not_pass_reinvestigate_nofify_date</dbfield>
+			<type>8</type>
+			<name>未通过调查结果通知客户日期:</name>
+			<colspan>未通过调查结果通知客户日期</colspan>
+			<lspace/>
+			<width/><height/><valuesource/>
+		</item>
+	</row>
+	<row>	
+		<item>
+			<id>is_not_pass_reinvestigate_nofify</id>
+			<dbfield>is_not_pass_reinvestigate_nofify</dbfield>
+			<type>2</type>
+			<name>未通过调查是否通知客户:</name>
+			<colspan>未通过调查是否通知客户</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>loan_beizhu</id>
+			<dbfield>loan_beizhu</dbfield>
+			<type>5</type>
+			<name>备注:</name>
+			<colspan>备注</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>
+	
+</loanInvestigateTable>
+
+<loanRecheckTable>
+
+	<row>			
+		<item><id>is_pass_check</id>
+			<dbfield>is_pass_check</dbfield>
+			<type>2</type>
+			<name>是否通过审查:</name>
+			<colspan>是否通过审查</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>not_pass_check_reason</id>
+			<dbfield>not_pass_check_reason</dbfield>
+			<type>1</type>
+			<name>未通过审查原因:</name>
+			<colspan>未通过审查原因</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>not_pass_check_notify_date</id>
+			<dbfield>not_pass_check_notify_date</dbfield>
+			<type>8</type>
+			<name>未通过审查结果通知客户日期:</name>
+			<colspan>未通过审查结果通知客户日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>
+	<row>
+		<item>
+			<id>is_not_pass_check_notify</id>
+			<dbfield>is_not_pass_check_notify</dbfield>
+			<type>2</type><name>未通过审查是否通知客户:</name>
+			<colspan>未通过审查是否通知客户</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+	</row>
+	
+	
+	
+</loanRecheckTable>
+
+<loanCheckTable>
+	<row>
+		<item>
+			<id>is_pass_loan_check</id><dbfield>is_pass_loan_check</dbfield>
+			<type>2</type>
+			<name>是否审批通过:</name>
+			<colspan>是否审批通过</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>loan_check_money</id>
+			<dbfield>loan_check_money</dbfield>
+			<type>1</type><name>审批金额（万元）:</name>
+			<colspan>审批金额</colspan><lspace/>
+			<width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>not_pass_loan_check_reason</id>
+			<dbfield>not_pass_loan_check_reason</dbfield>
+			<type>1</type>
+			<name>审批未通过原因:</name>
+			<colspan>审批未通过原因</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>
+	<row>
+		<item>
+			<id>loan_check_echo_date</id>
+			<dbfield>loan_check_echo_date</dbfield>
+			<type>8</type>
+			<name>结果反馈日期:</name>
+			<colspan>结果反馈日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>loan_check_notify_date</id>
+			<dbfield>loan_check_notify_date</dbfield>
+			<type>8</type>
+			<name>通知客户日期:</name>
+			<colspan>通知客户日期</colspan>
+			<lspace/>
+			<width/>
+			<height/>
+			<valuesource/>
+		</item>
+	</row>
+		
+		
+	
+	
+	
+</loanCheckTable>
+
+<limitMakingTable>
+	
+		
+	<row>
+		<item>
+			<id>limit_making_date</id>
+			<dbfield>limit_making_date</dbfield>
+			<type>8</type>
+			<name>限时办结日期:</name>
+			<colspan>限时办结日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+
+		<item>
+			<id>not_limit_making_reasion</id>
+			<dbfield>not_limit_making_reasion</dbfield>
+			<type>2</type><name>未限时办结原因:</name>
+			<colspan>未限时办结原因</colspan><lspace/>
+			<width/><height/>
+			<valuesource>未限时办结原因</valuesource>
+		</item>
+		<item>
+			<id>not_limit_making_expound</id>
+			<dbfield>not_limit_making_expound</dbfield>
+			<type>1</type>
+			<name>具体说明:</name>
+			<colspan>具体说明</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>	
+
+	
+</limitMakingTable>
+
+<loanGiveoutTable>	
+	<row>
+		<item>
+			<id>giveout_money</id>
+			<dbfield>giveout_money</dbfield>
+			<type>1</type>
+			<name>发放金额（万元）:</name>
+			<colspan>发放金额</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>giveout_money_echo_date</id>
+			<dbfield>giveout_money_echo_date</dbfield>
+			<type>8</type>
+			<name>发贷反馈日期:</name>
+			<colspan>发贷反馈日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+	</row>
+</loanGiveoutTable>
+
+<loanRevisitTable>
+	<row>
+		<item>
+			<id>return_visit_date</id>
+			<dbfield>return_visit_date</dbfield>
+			<type>8</type>
+			<name>回访日期:</name>
+			<colspan>回访日期</colspan>
+			<lspace/><width/><height/><valuesource/>
+		</item>
+		<item>
+			<id>is_trans_to_persion_acc</id>
+			<dbfield>is_trans_to_persion_acc</dbfield>
+			<type>2</type>
+			<name>资金是否转入客户本人账户:</name>
+			<colspan>资金是否转入客户本人账户</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>is_use_with_self</id>
+			<dbfield>is_use_with_self</dbfield>
+			<type>2</type>
+			<name>是否全部由本人使用:</name>
+			<colspan>是否全部由本人使用</colspan>
+			<lspace/><width/>
+			<height/>
+			<valuesource>是否</valuesource>
+		</item>
+	</row>
+	
+	<row>		
+		<item>
+			<id>is_satisfied_with_accept_process</id>
+			<dbfield>is_satisfied_with_accept_process</dbfield>
+			<type>2</type>
+			<name>对贷款受理中心人员整个工作过程是否满意:</name>
+			<colspan>对贷款受理中心人员整个工作过程是否满意</colspan>
+			<lspace/><width/><height/>
+			<valuesource>是否</valuesource>
+		</item>
+		<item>
+			<id>is_satisfied_with_deal_process</id>
+			<dbfield>is_satisfied_with_deal_process</dbfield>
+			<type>2</type>
+			<name>对贷款办理支行工作人员办贷过程是否满意:</name>
+			<colspan>对贷款办理支行工作人员办贷过程是否满意</colspan>
+			<lspace></lspace><width></width><height></height>
+			<valuesource>是否</valuesource>
+		</item>
+	</row>
+	
+	
+</loanRevisitTable>
+<otherTable>
+	<row>	
+		<item>
+			<id>loan_steps</id>
+			<dbfield>loan_steps</dbfield>
+			<type>2</type>
+			<name>贷款状态:</name>
+			<colspan>贷款状态</colspan>
+			<lspace></lspace><width></width><height></height>
+			<valuesource>贷款环节</valuesource>
+		</item>
+	</row>
+</otherTable>
+
+</dynamicui>

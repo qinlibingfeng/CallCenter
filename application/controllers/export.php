@@ -8,7 +8,34 @@ class Export extends CI_Controller{
 		$this->load->library('Utility_func');
 		date_default_timezone_set('Asia/Shanghai');
 	}
-	//所有客户导出
+	function createSearchSql($searchObject){
+		$sWhere="";
+		if($searchObject->searchType == 0){
+			return $this->appendAgentToSearchObject($this->createDefaultSearchObject($searchObject->searchText));
+		}
+		else if($searchObject->searchType == 1){
+			return $this->appendAgentToSearchObject($searchObject->searchText);
+		}
+		return array();
+	}
+	
+	function createDefaultSearchObject($text){
+		if($text == '')
+			return array();
+		$searchObject=array();
+		array_push($searchObject,array('likeor','varchar','client_name',$text));
+		array_push($searchObject,array('likeor','varchar','client_phone',$text));	
+		array_push($searchObject,array('likeor','varchar','client_address',$text));
+		array_push($searchObject,array('likeor','varchar','client_sex',$text));
+		return $searchObject;
+	}
+	
+	function appendAgentToSearchObject($searchObject){	
+		$agents=$this->agent_helper->getClientAgentsCanShow();
+		array_push($searchObject,$agents);
+		
+		return $searchObject;
+	}
 	function ajaxClientExport(){
 		header('Content-type: Application/json',true);
 		$this->load->library('firephp');	
@@ -16,14 +43,19 @@ class Export extends CI_Controller{
 		$this->firephp->info($req);			
 		$searchObject=json_decode($req['filterString']);	
 		$aColumns = array('client_id', 'client_name', 'client_sex',  'client_phone','client_address','client_ctime');
-		// echo "111"+searchObject;
+
 		$this->firephp->info($searchObject->searchText);
-		
+		$this->load->library('Agent_helper',array('agent_id'=>$searchObject->agentId));
+				
+		$seachItems= $this->createSearchSql($searchObject);
+			
+		$sWhere=$this->datatabes_helper->getSearchSql($seachItems);
+		/*
 		if($searchObject->searchType == 0)
 			$sWhere=$this->datatabes_helper->getFilteringSql($searchObject->searchText,$aColumns);
 		else if($searchObject->searchType == 1)
 			$sWhere=$this->datatabes_helper->getSearchSql($searchObject->searchText);
-
+		*/
 		$sOrder="order by client_id";	
 		$sTable="clients left join bill on client_id=bill_client_id";
 		
@@ -31,7 +63,7 @@ class Export extends CI_Controller{
 		$dyModelName=$this->dynamicui->getDynamicuiModel();
 		$this->load->model($dyModelName);
 		$exportMap=$this->$dyModelName->getClientExportFields();
-		
+				
 		
 		$sQuery = "
 		SELECT SQL_CALC_FOUND_ROWS ".str_replace(" , ", " ", implode(", ", $exportMap["dbField"]))."
@@ -39,6 +71,10 @@ class Export extends CI_Controller{
 		$sWhere
 		$sOrder
 		";
+		
+		//echo  str_replace(" , ", " ", implode(", ", $exportMap["dbField"]));
+		
+		
 		
 		$this->firephp->info($sQuery);
 		$data=$this->Clients_model->getData($sQuery);
@@ -47,84 +83,16 @@ class Export extends CI_Controller{
 		$path='./export_datas/'.$fileName;
 		
 		$exportData=array();	
+	
+
 		$this->datatabes_helper->reverseResultBind($exportData,$data->result_array(), $exportMap["dbField"],$exportMap["bindField"],"client_id");
-		
+
 	    $this->excel_helper->exportToFile($path,$exportData,$exportMap["tabHeader"]);	
 		$ret['path']=$this->config->item('base_url').'/'.$path;
 		$ret["fileName"]=$fileName;
 		
 		echo json_encode($ret);
 	}
-
-	//订单导出***************开始*****************************************
-	function ajaxOrderFormExport(){
-		header('Content-type: Application/json',true);
-		$this->load->library('firephp');	
-		$req=$this->input->post();
-		$this->firephp->info($req);			
-		$searchObject=json_decode($req['filterString']);	
-		//$form_ids=json_decode($req['ids']);
-
-		//print_r($searchObject);
-
-		$this->firephp->info($searchObject->searchText);		
-		if($searchObject->searchType == 0)
-			$sWhere=$this->datatabes_helper->getFilteringSql($searchObject->searchText);
-		else if($searchObject->searchType == 1)
-			$sWhere=$this->datatabes_helper->getSearchSql($searchObject->searchText);
-		
-
-		if($req['ids']!=""){
-			$ssh =$this->datatabes_helper->getSearchSql($req['ids']);
-			$sWhere=$sWhere."and".substr($ssh,5);
-
-		}
-		//$aColumns = array("order_id","form_sssh","form_id","form_psss","lastTime","uniqueid","client_name","client_agent","client_cell_phone","client_address","client_ctime");
-
-		
-
-		$sOrder="order by lastTime";	
-		$sTable="order_form  left join clients on form_id=client_id";
-		//echo "2222222222222".$searchObject->agentId;
-		$this->load->library('Dynamicui',array("agentId"=>$searchObject->agentId));
-		//echo "11111111111";
-		$dyModelName=$this->dynamicui->getDynamicuiModel();
-		$this->load->model($dyModelName);
-		$exportMap=$this->$dyModelName->getClientformExportFields();
-
-		//print_r($exportMap);
-		
-		$sQuery = "
-		SELECT SQL_CALC_FOUND_ROWS ".str_replace(" , ", " ", implode(", ", $exportMap["dbField"]))."
-		FROM   $sTable
-		$sWhere
-		$sOrder
-		";
-
-		//echo $sQuery."\n";
-
-		$this->firephp->info($sQuery);
-		$data=$this->Clients_model->getData($sQuery);
-
-		//print_r($data);
-		
-		$fileName='order'.date('dMyhis').'.xls';
-		$path='./export_datas/'.$fileName;
-		$exportData=array();	
-		
-		$this->datatabes_helper->reverseResultBind($exportData,$data->result_array(), $exportMap["dbField"],$exportMap["bindField"],"order_id");
-
-		
-	    $this->excel_helper->exportToFile($path,$exportData,$exportMap["tabHeader"]);
-		$ret['path']=$this->config->item('base_url').'/'.$path;
-		$ret["fileName"]=$fileName;
-		
-		echo json_encode($ret);
-	}
-
-
-	//订单导出***************结束*****************************************
-
 	
 	function ajaxCustomClientCountExport(){
 		header('Content-type: Application/json',true);

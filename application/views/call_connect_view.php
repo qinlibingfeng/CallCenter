@@ -47,18 +47,6 @@
 					call(number);
 				}
 		}	
-		function onagentClick(name)
-		{
-			//alert("<?php echo site_url("+url+");?>");
-			alert(name);
-			//confirm(name);
-			
-			//if(name !="")
-			//	window.parent.iAddTab(name,url);
-			//else
-			//	window.parent.iAddTab("未命名",url);	
-		}
-
 		function webVoipCallPhone(id){
 				var number=$('#'+id).attr('value');						
 			    number=number.replace(/[\D]/g,'');
@@ -71,6 +59,248 @@
 		function updateUniqueid(uniqueid){	
 			$('#uniqueid').attr('value',uniqueid);
 		}
+		
+		
+		function checkInput(){	
+			var steps = $("#loan_steps").val();
+			switch (steps)
+			{
+				case '申请受理':
+				{
+					if($("#client_cell_phone").val()=='')
+					{
+						alert("请输入电话号码");
+						return 0;
+					}
+					if($("#client_name").val()=='')
+					{
+						alert("请输入申请人姓名");
+						return 0;
+					}
+					if($("#client_sfz").val()=='')
+					{
+						alert("请输入申请人身份证号");
+						return 0;
+					}
+					if($("#home_address").val()=='')
+					{
+						alert("请输入申请人地址");
+						return 0;
+					}
+					if($("#loan_use").val()=='')
+					{
+						alert("请输入贷款用途");
+						return 0;
+					}
+					if($("#loan_mode").val()=='')
+					{
+						alert("请选择贷款方式");
+						return 0;
+					}
+					
+					if($("#loan_money").val()=='')
+					{
+						alert("请输入申请金额");
+						return 0;
+					}
+					if($("#is_pass_first_trail").val()=='未填写')
+					{
+						alert("请选择是否通过初审");
+						return 0;
+					}
+					if($("#is_pass_first_trail").val()=='否' &&  $("#not_pass_first_trail_reason").val()=='')
+					{
+						alert("请输入未通过初审原因");
+						return 0;
+					}
+					if($("#accept_sub_branch").val()=='')
+					{
+						alert("请输入通知受理支行");
+						return 0;
+					}
+					break;
+				}
+				case '调查':
+				{
+					if($("#is_pass_investigate").val()=='未填写')
+					{
+						alert("请选择是否通过支行调查");
+						return 0;
+					}
+					
+					if($("#is_pass_investigate").val()=='否' &&  $("#not_pass_reason").val()=='')
+					{
+						alert("请输入未通过原因");
+						return 0;
+					}					
+				
+					if($("#investigate_echo_date").val()=='')
+					{
+						alert("请选择结果反馈日期");
+						return 0;
+					}
+					if($("#notify_danger_reinvestigate_date").val()=='')
+					{
+						alert("请选择通知风险管理再调查日期");
+						return 0;
+					}
+					if($("#reinvestigate_result").val()=='')
+					{
+						alert("请输入再调查结果");
+						return 0;
+					}
+					if($("#not_pass_reinvestigate_nofify_date").val()=='')
+					{
+						alert("请选择未通过调查结果通知客户日期");
+						return 0;
+					}
+					if($("#is_not_pass_reinvestigate_nofify").val()=='未填写')
+					{
+						alert("请输入未通过调查的是否通知客户");
+						return 0;
+					}			
+					break;
+				}
+				case '审查':
+				{
+					if($("#is_pass_check").val()=='未填写')
+					{
+						alert("请选择是否通过审查");
+						return 0;
+					}
+					
+					if($("#is_pass_check").val()=='否' &&  $("#not_pass_check_reason").val()=='')
+					{
+						alert("请输入未通过原因");
+						return 0;
+					}					
+				
+					if($("#not_pass_check_notify_date").val()=='')
+					{
+						alert("请选择未通过审查结果通知客户日期");
+						return 0;
+					}
+					if($("#is_not_pass_check_notify").val()=='')
+					{
+						alert("请选择未通过审查的是否通知客户");
+						return 0;
+					}
+				
+					break;
+				}
+				case '审议审批':
+				{
+					if($("#is_pass_loan_check").val()=='未填写')
+					{
+						alert("请选择是否通过审批");
+						return 0;
+					}
+					if($("#is_pass_loan_check").val()=='是' &&  $("#loan_check_money").val()=='')
+					{
+						alert("请输入审批金额");
+						return 0;
+					}		
+					if($("#is_pass_loan_check").val()=='否' &&  $("#not_pass_loan_check_reason").val()=='')
+					{
+						alert("请输入审批未通过原因");
+						return 0;
+					}		
+					if($("#loan_check_echo_date").val()=='')
+					{
+						alert("请选择结果反馈日期");
+						return 0;
+					}
+					if($("#loan_check_notify_date").val()=='')
+					{
+						alert("请选择通知客户日期");
+						return 0;
+					}
+					
+				
+			}
+			case '限时办结':
+			{
+					if($("#limit_making_date").val()=='')
+					{
+						alert("请选择限时办结日期");
+						return 0;
+					}
+					if($("#not_limit_making_reasion").val()=='未填写')
+					{
+						alert("请选择未限时办结原因");
+						return 0;
+					}
+					if($("#not_limit_making_expound").val()=='')
+					{
+						alert("请输入具体说明");
+						return 0;
+					}
+					
+					
+				
+					break;
+				}
+				case '发放':
+				{
+					if($("#giveout_money").val()=='')
+					{
+						alert("请输入发放金额");
+						return 0;
+					}
+					if($("#giveout_money_echo_date").val()=='')
+					{
+						alert("请选择发贷反馈日志");
+						return 0;
+					}
+					
+					
+					break;
+				}
+				case '回访':
+				{
+					if($("#return_visit_date").val()=='')
+					{
+						alert("请选择回访日期");
+						return 0;
+					}
+					if($("#is_trans_to_persion_acc").val()=='未填写')
+					{
+						alert("请选择资金是否转入本人账户");
+						return 0;
+					}
+					if($("#is_use_with_self").val()=='未填写')
+					{
+						alert("请选择资金是否全部由本人使用");
+						return 0;
+					}
+					if($("#is_satisfied_with_accept_process").val()=='未填写')
+					{
+						alert("请选择对贷款受理中心人员整个工作过程是否满意");
+						return 0;
+					}
+					
+					if($("#is_satisfied_with_deal_process").val()=='未填写')
+					{
+						alert("请选择对贷款办理支行工作人员办贷过程是否满意");
+						return 0;
+					}
+					
+					break;
+				}
+				default:
+					break;
+				
+			}
+			return 1;
+		}		
+		
+		
+		
+		
+		
+		
+		
+		
 		$(document).ready(function(){
 			//$('body').everyTime('10s',function(){
 				//$.jGrowl("超过5分钟，请留意时间！",{'theme':'jGrowl bottom-right'});
@@ -86,17 +316,9 @@
 						$('#workOrder-reciever').append("<option selected='selected' value='"+row.name_value+"'>"+row.name_text+"</option>");
 				}
 			});
-			//填充坐席
-			var gTargetAgents2=<?php echo json_encode($targetAgents);?>;
-			$.each(gTargetAgents2,function(index,row){
-				if(row.name_text !='全部'){
-					if(row.name_text != '未填写')						
-						$('#Orderform-reciever').append("<option value='"+row.name_value+"'>"+row.name_text+"</option>");
-						else						
-						$('#Orderform-reciever').append("<option selected='selected' value='"+row.name_value+"'>"+row.name_text+"</option>");
-				}
-			});
 			
+			
+
 			
 			
 			setDatePickerLanguageCn();			
@@ -128,45 +350,6 @@
 						}
 				});	
 			});
-
-			//订单开始*********************************************************************************
-			$('#btnCreatOrderForm').click(function(){
-				//alert("保存订单");
-				//$('#btnSave').click();
-				$("#createOrderForm-dialog" ).dialog({
-						autoOpen:true,
-						height: 400,
-						width: 750,
-						modal: true,						
-						buttons:{
-						"确认": function(){									
-								$req={};
-								var bessDatas=$('#bussniessInfoTable').dynamicui.getTextDatas('#bussniessInfoTable');
-								$req.ids=bessDatas.ids;
-								$req.values=bessDatas.values;
-								$req.uniqueid=$("#uniqueid").attr('value');
-								$req.client_id=$('#clientBh').attr('value');
-								$req.owner=$('#agentId').attr('value');	
-								$req.form_agent=$('#agentId').attr('value');							
-																
-								//设置预约时间
-								$.post('<?php echo site_url("order/createOrderform")?>',$req,function(res){
-									if(res.isOk){
-										alert('生成订单成功');
-									}
-								});
-								$(this).dialog('destroy');
-						},
-						"取消": function(){
-							$(this).dialog( "close" );
-						}
-					},
-					close: function(){
-						$(this).dialog('destroy');
-					}
-				});	
-			});
-			//订单结束*********************************************************************************
 			
 			$('#btnCreatWorkOrder').click(function(){
 				$("#createWorkOrder-dialog" ).dialog({
@@ -195,7 +378,7 @@
 									$req={'reciever':'','lastTime':'','ids':[],'values':[],'client_id':'','owner':'','orderType':'','orderContent':'','phone':'','name':''};
 									$req.reciever=$('#workOrder-reciever').attr('value');
 									$req.lastTime=getYmdhmDateString('workOrder-ymd','workOrder-hour','workOrder-min');	
-									var bessDatas=$('#bussniessInfoTable').dynamicui.getTextDatas('#bussniessInfoTable');
+									var bessDatas=$('#loanInvestigateTable').dynamicui.getTextDatas('#loanInvestigateTable');
 									$req.ids=bessDatas.ids;
 									$req.values=bessDatas.values;
 									
@@ -243,6 +426,10 @@
 				});  
 			});
 			
+			
+			
+			
+			
 			$('#agentId').attr('value','<?php echo $agentId;?>');
 			$('#clientBh').attr('value',"<?php echo $clientBh;?>");
 			$('#phoneNumber').attr('value',"<?php echo $phoneNumber;?>");
@@ -250,9 +437,16 @@
 			$('#callFrom').attr('value',"<?php echo $from?>");
 			
 	
-		  	$('#baseInfoTable').dynamicui(<?php echo json_encode($baseInfo);?>);
+		  $('#baseInfoTable').dynamicui(<?php echo json_encode($baseInfo);?>);
+			$('#loanInvestigateTable').dynamicui(<?php echo json_encode($loanInvestigate);?>);
+			$('#loanRecheckTable').dynamicui(<?php echo json_encode($loanRecheck);?>);
 			
-			$('#bussniessInfoTable').dynamicui(<?php echo json_encode($bussniessInfo);?>);
+			$('#loanCheckTable').dynamicui(<?php echo json_encode($loanCheck);?>);
+			$('#limitMakingTable').dynamicui(<?php echo json_encode($limitMaking);?>);
+			$('#loanGiveoutTable').dynamicui(<?php echo json_encode($loanGiveout);?>);
+			$('#loanRevisitTable').dynamicui(<?php echo json_encode($loanRevisit);?>);
+			
+			
 			$('#client_cell_phone').attr('value',"<?php echo $phoneNumber;?>");
 			$('#btnSave').click(function(){	
 	
@@ -262,18 +456,28 @@
 				datas.clientBh=$('#clientBh').attr('value');
 				datas.phone=$('#phoneNumber').attr('value');
 				datas.uniqueid=$('#uniqueid').attr('value');
+				
+				
+				if(checkInput() == 0)
+					return;
+	
+				
+				
 
 				datas.campaignId=window.parent.parent.document.getElementById('vicidial_campaign_id').value;
 				
 				var baseDatas=$('#baseInfoTable').dynamicui.getTextDatas('#baseInfoTable');	
+				var bessDatas=$('#loanInvestigateTable').dynamicui.getTextDatas('#loanInvestigateTable');
 				
-
-				//var bessDatas=$('#bussniessInfoTable').dynamicui.getTextDatas('#bussniessInfoTable');
+				var bfssDatas=$('#loanRecheckTable').dynamicui.getTextDatas('#loanRecheckTable');
+				var bgssDatas=$('#loanCheckTable').dynamicui.getTextDatas('#loanCheckTable');
+				var bhssDatas=$('#limitMakingTable').dynamicui.getTextDatas('#limitMakingTable');
+				var bissDatas=$('#loanGiveoutTable').dynamicui.getTextDatas('#loanGiveoutTable');
+				var bjssDatas=$('#loanRevisitTable').dynamicui.getTextDatas('#loanRevisitTable');
 				
-				//datas.columText.colum=baseDatas.ids.concat(bessDatas.ids);
-				//datas.columText.datas=baseDatas.values.concat(bessDatas.values);
-				datas.columText.colum=baseDatas.ids;
-				datas.columText.datas=baseDatas.values;
+				datas.columText.colum=baseDatas.ids.concat(bessDatas.ids).concat(bfssDatas.ids).concat(bgssDatas.ids).concat(bhssDatas.ids).concat(bissDatas.ids).concat(bjssDatas.ids);
+				
+				datas.columText.datas=baseDatas.values.concat(bessDatas.values).concat(bfssDatas.values).concat(bgssDatas.values).concat(bhssDatas.values).concat(bissDatas.values).concat(bjssDatas.values);
 
 				datas.columInt.colum=[];
 				datas.columInt.datas=[];
@@ -291,28 +495,6 @@
 				});  
 				
 			});
-		$("#btnAddWaitComm").click(function(){
-			$('#btnSave').click();
-			if(confirm("确定要添加正在沟通的客户吗？")){
-				$req={'phone_number':''};
-				$req.phone_number=$("#client_cell_phone").val();
-				
-				$.post("<?php echo site_url('client/ajaxGetClientID')?>",$req,function(res){
-					if(res.ok){
-						var $client_id=res.data;						
-						var $datas = new Array();
-						$datas.push($client_id);
-						$req2={'ids':[]};					
-						$req2.ids=$datas;
-						$.post("<?php echo site_url('client/ajaxAddWaitComm')?>",$req2,function(res){
-							if(res.ok)	
-								alert("添加成功");
-						}); 
-					}								
-				}); 			 
-			}
-		});
-		
 			
 		$('#connectInfoTable').dataTable( {
 			"bProcessing": true,
@@ -320,13 +502,11 @@
 			"bStateSave" : false,
 			"fnCreatedRow": function( nRow, aData, iDataIndex ) {
 			  // Bold the grade for all 'A' grade browsers
-			  if(aData[2] == "callin")
+			  if(aData[2] == 0)
 			 	 $('td:eq(2)', nRow).html("呼入");
 			  else
 			  	 $('td:eq(2)', nRow).html("呼出");
 			 
-				$('td:eq(5)', nRow).html("<a href='javascript:onagentClick(\""+aData[5]+"\")'>查看</a>");
-
 			  $('td:eq(6)', nRow).html("<a href='javascript:listenRecord(\""+aData[6]+"\")'>收听</a>");
 			  
     		},"aoColumns": [
@@ -346,11 +526,37 @@
 				aoData.push(externData);
 				aoData.push(externPhoneData);
 				aoData.push(externCellPhoneData);
-	
+				
 			},
 			"sAjaxSource": "<?php echo site_url('communicate/ajaxCommunicateRecord')?>",
 			"oLanguage": {"sUrl": "<?php echo $this->config->item('base_url')?>/www/lib/dataTable/de_DE.txt"}
     	});
+    	
+    	
+    	var $steps = "<?php echo isset($clientItem[0])?$clientItem[0]['loan_steps']:'申请受理'; ?>";   	
+    	$("#loan_steps").attr("value",$steps);
+    	
+    	$("#step"+$steps).click();
+	
+    	
+    	$("#loan_steps").change(function(){
+  			//更新
+  			 var datas={'clientId':'','loan_steps':''};
+  			 datas.clientId="<?php echo isset($clientItem[0])?$clientItem[0]['client_id']:''; ?>";
+  			 datas.loan_steps=$("#loan_steps").val();
+  			 
+  			$.post("<?php echo site_url('communicate/ajaxCommunicateSaveStep')?>",datas,function(res){	
+					 if(res.ok){
+					 	$("#step"+$("#loan_steps").val()).click();
+					}
+					 			  							
+				});  
+			});
+			
+		
+			
+    	
+    	
 	});
     </script>
  
@@ -372,46 +578,54 @@
     工单类型:<select id="orderType"></select>&nbsp;&nbsp;&nbsp; 接收人:<select id="workOrder-reciever"></select> <br>
 	截止时间:<input id='workOrder-ymd' type="text" style="width:90px" value="<?php echo $yuyue['ymh']?>">&nbsp;<?php echo form_dropdown('s_hour',$yuyue['hourOptions'],$yuyue['hourDef'],'id="workOrder-hour"')?>&nbsp;<?php echo form_dropdown('s_min',$yuyue['minOptions'],$yuyue['minDef'],'id="workOrder-min"')?>
 </div>
-
-<div id="createOrderForm-dialog" title="订单"  style="display:none">
-<table  id="bussniessInfoTable" width="100%">
-<tbody></tbody>	
-</table>
-
-</div>
-
 <div class="page_main page_tops">
 	<div class="page_nav">
          <div class="nav_ico"><img src="www/images/page_nav_ico.jpg" /></div>
-         <div class="nav_">当前位置：&gt; 正在沟通</div>
+         <div class="nav_">当前位置：&gt; 正在沟通<center><font color="red">注：带有❈为必填选项</font></center></div>
          <div class="nav_other"></div>
         
 	</div>		
      <div class="func-panel">
                     <div class='left'>&nbsp;&nbsp;&nbsp;基本信息</div>
+
                     <div class="right" align="right">
-					<!--<input  id='btnAddWaitComm' type="button" name="btnSearch" value="待沟通添加 " class="btnDel" />
-                    <input id="btnCreatWorkOrder" type="button" value="生成工单">&nbsp-->
-					<input id="btnCreatOrderForm" type="button" value="保存订单">&nbsp
-                    <input id="nextClient" type="button" value="下一个">&nbsp 
+                    <input id="btnCreatWorkOrder" type="hidden" value="生成工单">&nbsp
+                    
+                    
+                    
+                    
+                    <select name="loan_steps" id="loan_steps">
+											<option value="申请受理">申请受理</option>
+											<option value="调查">调查</option>
+											<option value="审查">审查</option>
+											<option value="审议审批">审议审批</option>
+											<option value="限时办结">限时办结</option>
+											<option value="发放">发放</option>
+											<option value="回访">回访</option>
+										</select>
+                    
+                    <input id="nextClient" type="hidden" value="下一个">&nbsp 
                     <input id="btnSave" type="button" value="保存">&nbsp;
                     <input id="btnYuyue" type="button" value="预约">&nbsp;
-                    <input style="display:None" id="btnBack" type="button" value="返回"></div>            
+                    <input id="btnBack" type="button" value="返回"></div>            
                    <div style="clear:both"></div>						
     </div> 
     
-        <div class='content'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名:
-         <span class="person-info"><?php echo isset($clientItem[0])?$clientItem[0]['client_name']:''; ?></span>&nbsp;
-         所属坐席：<span class="person-info"><?php echo isset($clientItem[0]['client_agent'])?$clientItem[0]['client_agent']:''; ?></span> &nbsp;
-         电话：<span class="person-info"><?php echo isset($clientItem[0])?$clientItem[0]['client_cell_phone']:''; ?> </span> &nbsp;
-         地址： <span class="person-info"><?php echo isset($clientItem[0]['client_address'])?$clientItem[0]['client_address']:'';?> &nbsp; </span> 
-         号码归属地：<span class="person-info"><?php echo $gsd;?></span></div>
+        <div class='content'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名: <span class="person-info"><?php echo isset($clientItem[0])?$clientItem[0]['client_name']:''; ?></span>&nbsp;所属坐席：<span class="person-info"><?php echo isset($clientItem[0]['client_agent'])?$clientItem[0]['client_agent']:''; ?></span> &nbsp;电话：<span class="person-info"><?php echo isset($clientItem[0])?$clientItem[0]['client_phone']:''; ?> </span> &nbsp; 地址： <span class="person-info"><?php echo isset($clientItem[0]['client_address'])?$clientItem[0]['client_address']:'';?> &nbsp; </span> 号码归属地：<span class="person-info"><?php echo $gsd;?></span></div>
 
 		<div class='work-list'>			
 			<div class='tabs' style="padding-left:40px">		
 				<ul class="idTabs">   
-                	<li><a href="#personInfo">个人资料</a></li> 	    	 
-                	<li><a href="#bussniessInfo">业务信息</a></li>	       	          
+                	<li><a id= "step申请受理" href="#personInfo">贷款申请受理环节</a></li> 	    	 
+                	<li><a id= "step调查" href="#loanInvestigate">贷款调查环节</a></li>	
+                	<li><a id= "step审查" href="#loanRecheck">贷款审查环节</a></li>	     
+                	<li><a id= "step审议审批" href="#loanCheck">贷款审议、审批环节</a></li>	  
+                	<li><a id= "step限时办结" href="#limitMaking">限时办结</a></li>	   
+                	
+                	<li><a id= "step发放" href="#loanGiveout">贷款发放环节</a></li>	 
+                	
+                	<li><a id= "step回访" href="#loanRevisit">贷后回访环节</a></li>	 
+ 	          
 					<li><a href="#connectInfo">沟通记录</a></li> 	
                     <li><a href="#helprDoc"> 知识库</a></li>  	                   
 				</ul> 
@@ -421,10 +635,10 @@
 			<div id="personInfo" class="panelOne">
 						<table  id="baseInfoTable" width="100%">
                         <tbody></tbody>	
-						</table>
+						</table>	
 						<br>
 			</div> 
-            <div id="connectInfo" class='panelOne'>
+      <div id="connectInfo" class='panelOne'>
             	<table width="100%" id="connectInfoTable"><thead><tr align="left" class="dataHead">
                 <td width="100px">坐席</td>
                 <td width="120px" >对方电话</td>
@@ -435,14 +649,44 @@
                 <td width="60px">录音</td>
               </tr></thead></table>
 			</div>
-			<!--
-            <div id="bussniessInfo" class='panelOne'>       
-				<table id="bussniessInfoTable" width="100%">
-                 <tbody></tbody>
-                </table>
-               	
-			</div>-->
-            <div id="helprDoc" class='panelOne'>
+      <div id="loanInvestigate" class='panelOne'>       
+				<table id="loanInvestigateTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>
+      <div id="loanRecheck" class='panelOne'>       
+				<table id="loanRecheckTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>			
+      <div id="loanCheck" class='panelOne'>       
+				<table id="loanCheckTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>				
+	    <div id="limitMaking" class='panelOne'>       
+				<table id="limitMakingTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>			
+	    <div id="loanGiveout" class='panelOne'>       
+				<table id="loanGiveoutTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>				
+			
+	    <div id="loanRevisit" class='panelOne'>       
+				<table id="loanRevisitTable" width="100%">
+          <tbody></tbody>
+          </table>               	
+			</div>				
+			
+			
+			
+			
+			
+			
+       <div id="helprDoc" class='panelOne'>
             	
 			</div>
 		</div>

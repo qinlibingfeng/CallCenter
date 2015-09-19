@@ -57,7 +57,7 @@ function() {
             <a href="javascript:void(0);" class="gfName" hidefocus="true"><?php echo $item["item_text"];?></a>
         </h3>
        
-  		 <ul class="gFdBdy" id="study_<?php echo $item["item_id"]?>"  style="display:none">
+  		      <ul class="gFdBdy" id="study_<?php echo $item["item_id"]?>"  style="display:none">
                <?php foreach($item["sub_items"] as $sub_item){?>
             <li onMouseOver="addClassName('li_<?php echo $sub_item["item_id"] ?>','on');" id="li_<?php echo $sub_item["item_id"] ?>" onMouseOut="removeClassName('li_<?php echo $sub_item["item_id"] ?>','on');" title="" rel="o_list">
             <b class="icon <?php echo $sub_item["item_logo"];?>"></b><a href="javascript:void(0)" hidefocus="true" onClick="nav('<?php echo $sub_item["item_text"]?>','<?php echo $sub_item["item_url"]?>')" class="gfNm"><?php echo $sub_item["item_text"];?></a>

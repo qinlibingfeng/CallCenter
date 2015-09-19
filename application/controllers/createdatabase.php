@@ -99,37 +99,8 @@ class Createdatabase extends CI_Controller
 		$this->addDefaultDbField();
 		$this->addDbFieldByDynamicUi();
 		$this->addWorkTableField();
-		$this->addWorkOrderformField();
 		
-	}
-
-	public function addWorkOrderformField(){
-		$this->load->model('dynamicui_model');
-		$model=new Dynamicui_model();
-			
-		$allDbField =  $model->getGerenidbusnissdata();  
-		foreach($allDbField as $dbField){
-			echo $dbField."<br>";
-			if ($this->db->field_exists($dbField, 'order_form')){
-					
-			}else{
-				$addFieldStr="$dbField varchar(255) CHARACTER SET utf8  COLLATE utf8_general_ci ";
-				
-				$fields = array(
-                        $dbField => array(
-                                                 'type' => 'VARCHAR',
-                                                 'constraint' => '255',
-												 'null'=>true
-
-                                          ),
-                );
-			
-				$this->dbforge->add_column('order_form', $fields);	
-					//$this->dbforge->drop_column('order_form', 'client_xfer');
-				echo "add".$dbField."<br>";
-			} 
-		}	
-
+		
 	}
 	
 	public function addWorkTableField(){
@@ -154,8 +125,7 @@ class Createdatabase extends CI_Controller
                                           ),
                 );
 			
-				$this->dbforge->add_column('work', $fields);
-			
+				$this->dbforge->add_column('work', $fields);	
 				echo "add".$dbField."<br>";
 			} 
 		}	

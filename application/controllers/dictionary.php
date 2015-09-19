@@ -202,8 +202,6 @@ class Dictionary extends CI_Controller
 			$data=$this->Dictionary_model->getNormalDictionaryByType($req['type']);
 		else if($req['type'] == 1)
 			$data=$this->Dictionary_model->getNormalDictionaryByTypeText($req['text']);
-		//print_r($data);
-
 		echo json_encode($data);
 	}
 	

@@ -1,3 +1,4 @@
+<?php  error_reporting(0);  ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Client extends CI_Controller{
 
@@ -59,37 +60,7 @@ public  function  dbbbb(){
 	//echo $val."<br />";
 	//echo $user;
 }*/
-	public  function  dbbbb(){
-		echo "222222222222222222222".'<br />';
-		
-	}
-	public function find_all($agentId)
-	{
-		//echo "<script>alert("成功");</script>";
-		$this->firephp->info($agentId);
 
-		$data['agentId']=$agentId;
-		$this->load->library('Utility_func');
-		$timeOptions=$this->utility_func->creatHourMinOptions();
-		$data['beginTime']=$timeOptions;
-		$data['beginTime']['ymh']=date('Y-m-d');
-		$data['beginTime']['hourDef']='00';
-		$data['beginTime']['minDef']='00';
-		
-		$data['endTime']=$timeOptions;
-		$data['endTime']['ymh']=date('Y-m-d');
-		$data['endTime']['hourDef']='23';
-		$data['endTime']['minDef']='59';
-		$this->load->library('Dynamicui',array("agentId"=>$agentId));
-		$dyModelName=$this->dynamicui->getDynamicuiModel();
-		$this->load->model($dyModelName);
-		$data["searchPanelTableData"]=$this->$dyModelName->getOrderTableSearchPanel();
-		$data["tableHeader"]=$this->$dyModelName->getOrderTableHeader();
-		
-
-		$this->load->view('client_find_all_view',$data);
-	
-	}
 
 	public function all($agentId='')
 	{
@@ -120,11 +91,15 @@ public  function  dbbbb(){
 		if($showAgents){
 			array_push($showAgents,array("name_value"=>"全部","name_text"=>"全部"));
 			array_push($showAgents,array("name_value"=>"未填写","name_text"=>"未填写"));
-			foreach($data["searchPanelTableData"]["elements"][0] as &$items){
-				if($items["id"] == "client_agent"){
-					$items["value"]["values"]=$showAgents;
-					$items["value"]["defaultValue"]="全部";
-				}
+			foreach($data["searchPanelTableData"]["elements"] as &$itemsarray){
+				foreach($itemsarray as &$items){
+					$this->firephp->info($items["id"]);
+					if($items["id"] == "client_agent"){
+						$this->firephp->info($items["id"]);
+						$items["value"]["values"]=$showAgents;
+						$items["value"]["defaultValue"]="全部";
+					}
+			}
 			}
 		}
 
@@ -272,37 +247,6 @@ public  function  dbbbb(){
 		
 		echo json_encode($res);
 	}
-	//订单删除****************************开始************************
-	function ajaxDeleteOneFormClient(){
-		//require('/var/www/html/config.php');
-		header('Content-type: Application/json',true);
-		$req=$this->input->post();
-		$this->firephp->info($req['ids']);
-		$sWhere=$this->datatabes_helper->getSearchSql($req['ids']);
-		if($sWhere != ""){
-			//print_r($req);
-			//echo $sWhere;
-			$sTable="order_form";
-			$sQuery = "
-			DELETE
-			FROM    $sTable
-			$sWhere";
-			
-			$ret=$this->Clients_model->getData($sQuery);	
-			$this->firephp->info($sQuery);	
-
-			$res['ok']=true;
-		}else{
-			$res['ok']=false;
-		}
-		
-		echo json_encode($res);
-
-	}
-	//订单删除****************************结束************************
-
-
-
 	function ajaxDeleteOneClient(){
 		require('/var/www/html/config.php');
 		header('Content-type: Application/json',true);
@@ -429,21 +373,6 @@ public  function  dbbbb(){
 		echo json_encode($res);	
 		
 	}
-	//订单删除所有****************************开始***********************************
-	/*function ajaxDeleteAllFormClient(){
-		header('Content-type: Application/json',true);
-		$req=$this->input->post();
-		
-		$this->firephp->info($req['filterString']);
-		$sWhere=$this->datatabes_helper->getSearchSql($req['filterString']);
-		
-		echo $sWhere."1********************************\n";
-
-
-	
-
-	}*/
-	//订单删除所有****************************结束***********************************
 	function ajaxDeleteAllClient(){
 		header('Content-type: Application/json',true);
 		$req=$this->input->post();
@@ -608,7 +537,6 @@ public  function  dbbbb(){
 		$sLimit ";
 		
 		$this->firephp->info($sQuery);
-		//echo $sQuery;
 		
 		$ret=$this->Clients_model->getData($sQuery);	
 		
@@ -618,8 +546,6 @@ public  function  dbbbb(){
 		
 		$this->firephp->info($sCount);
 		$output["iTotalRecords"]=$output["iTotalDisplayRecords"]=$ret[0]["sCount"];
-
-		//print_r($output);
 		
 		echo json_encode($output);
 	}
@@ -761,7 +687,6 @@ public  function  dbbbb(){
 		$sWhere
 		$sOrder
 		$sLimit ";
-
 	
 		$this->firephp->info($sQuery);
 		
@@ -813,23 +738,16 @@ public  function  dbbbb(){
 	public function ajaxAdd(){
 		header('Content-type: Application/json',true);
 		$req=$this->input->post();
-		
-
 		require('/var/www/html/config.php');
 		$items=array_combine($req['field'],$req['fieldValue']);
 		$res['ok']=true;
 		
 		$this->load->library('Dynamicui',array("agentId"=>""));
 		$modelName=$this->dynamicui->getDynamicuiModel();
-
-		
 		$this->load->model($modelName);
 		$allDbFields=$this->$modelName->getAllDbFileds();
-		//print_r($allDbFields);
 		
 		$this->firephp->info($allDbFields);
-
-		
 		//判断号码是否存在
 		if($items['client_phone'] !='' && $this->Clients_model->selectClientByPhone($items['client_phone'],$allDbFields)){
 			$res['ok']=false;
@@ -840,26 +758,24 @@ public  function  dbbbb(){
 			$res['ok']=false;
 			$res['fail']=$items['client_cell_phone'].'号码已存在';		
 		}
-
+		
 		if($items['client_person_card'] !='' && $this->db->query("select client_id from clients where client_person_card='".$items['client_person_card']."'")->result_array()){
 			$res['ok']=false;
 			$res['fail']=$items['client_cell_phone'].'号码已存在';
 			
 		}
 	
-	
 		//判断客户是否存在
 		if($res['ok']){
 			$items['client_ctime']=date("Y-m-d H:i:s");
 			$items['client_agent']=$req['agentId'];
 			$items['client_creater']=$req['agentId'];
-			
+
 	
 			$client_id=$this->Clients_model->insert($items);
 
 			$sql="select list_id from ".$db_config["database"].".vicidial_lists where campaign_id='".$req['campaignId']."';";
 			$row=$this->Clients_model->getData($sql)->result_array();
-			//echo $sql."$$$$$$$$$$$$$$$$$$$\n";
 			//echo $row[0]['list_id'];
 			//添加客户到vici_list中
 			$ssh = $this->Clients_model->syn_row_list($items,$row[0]['list_id']);
@@ -871,9 +787,6 @@ public  function  dbbbb(){
 			$res['nextUrl']=site_url('communicate/connected/manulClick').'/'.$req['agentId'].'/'.$client_id;
 		}
 		$this->firephp->info($res);
-
-
-		
 		echo json_encode($res);
 	}
 
@@ -882,24 +795,12 @@ public  function  dbbbb(){
 		$req=$this->input->post();
 		$this->firephp->info($req);
 		
-		if($req["ids"]){
-			foreach($req["ids"] as $id){
-					
-				$sCount = "select count(*) from clients_wait where client_id='$id'";
-				$ret=$this->db->query($sCount)->result_array();
-				//添加
-				if($ret[0]["count(*)"] == 0){
-					
-					$sql="insert into clients_wait (client_id,add_time) values('".$id."',now())";
-					$this->db->query($sql);
-					$res["ok"]=true;
-				}else{
-					$res["ok"]=false;
-				}	
-			}
-			
-		}else
-			$res["ok"]=false;
+		foreach($req["ids"] as $id){
+			$sql="insert into clients_wait (client_id,add_time) values('".$id."',now())";
+			$this->db->query($sql);
+		}
+		
+		$res["ok"]=true;
 		echo json_encode($res);  
 	}
 	
@@ -958,8 +859,7 @@ public  function  dbbbb(){
 		$batchNumber=$this->utility_func->getClientBatchNumber();
 		require('/var/www/html/config.php');
 		
-		//插入数据导临时表
-		//print_r($batchNumber);
+		//插入数据导临时表	
         $this->insertDataToTmpTable($req['agentId'],$req['file'],$req['dataMap'],$batchNumber);
 		$this->firephp->info($req['rules']);
 		
@@ -1018,9 +918,7 @@ public  function  dbbbb(){
 			$data["client_batch_number"]=$bathNumber;
 			if(!isset($data["client_agent"]))
 				$data["client_agent"]=$agentId;	
-
-
-			//print_r($data);
+		
 			if ($this->Clients_model->insertToClientTmp($data))
 			$count++;
 			
@@ -1160,23 +1058,7 @@ public  function  dbbbb(){
 		echo json_encode($res);
 	}
 
-	function ajaxGetClientID(){	
-		header('Content-type: Application/json',true);
-		$req=$this->input->post();
 
-		$this->load->library('firephp');
-		$phone_number=$req['phone_number'];
-
-		$sQuery = "
-		SELECT client_id from clients where client_cell_phone='$phone_number'";
-		$data=$this->db->query($sQuery)->result_array();
-
-		
-		$ret["data"]=$data[0]['client_id'];
-		$ret['ok']=true;
-		
-		echo json_encode($ret);		
-	}	
 	
 	
 }

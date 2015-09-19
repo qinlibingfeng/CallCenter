@@ -162,14 +162,11 @@ $(document).ready(function(){
 			"bStateSave" : false,
 			"fnCreatedRow": function( nRow, aData, iDataIndex ) {
 			  // Bold the grade for all 'A' grade browsers
-
-			  
-
 			  if(aData[1] == 0)
 			 	 $('td:eq(1)', nRow).html("呼入");
 			  else
 			  	 $('td:eq(1)', nRow).html("呼出");
-			
+			 
 			  $('td:eq(4)', nRow).html("<a href='javascript:listenRecord(\""+aData[4]+"\")'>收听</a>");
 			  
     		},"aoColumns": [
@@ -299,7 +296,7 @@ $(document).ready(function(){
         
                 <tr><td class="name">招生阶段:</td><td id="cgZsjd" colspan="5"></td><tr>
                 <tr><td class="name">沟通状态:</td><td id="cgGtzt" colspan="5"></td><tr>
-                <tr><td class="name"> </td><td colspan="5"><textarea  id="client_note" style="width:300px;height:40px"><?php echo isset($clientItem[0]['client_note'])?$clientItem[0]['client_note']:'';?></textarea></td></tr>
+                <tr><td class="name">备注:</td><td colspan="5"><textarea  id="client_note" style="width:300px;height:40px"><?php echo isset($clientItem[0]['client_note'])?$clientItem[0]['client_note']:'';?></textarea></td></tr>
                 </table>	
                	
 			</div>

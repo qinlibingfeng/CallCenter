@@ -1,4 +1,4 @@
-{  
+﻿{  
 	   "sLengthMenu": "每页显示 _MENU_ 条记录",  
 	   "sZeroRecords": "对不起，查询不到任何相关数据",  
 	   "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",  

@@ -93,7 +93,7 @@ $(document).ready(function() {
 			   	$('td:eq(3)', nRow).html('呼入');
 				$('td:eq(4)', nRow).html('留言');
 			
-				$('td:eq(6)', nRow).html("<a href='javascript:listenRecord(\""+aData[7]+"\")'>收听</a>&nbsp;<a href='"+aData[7]+"'>下载</a>");
+				$('td:eq(6)', nRow).html("&nbsp;<a href='javascript:listenRecord(\""+aData[7]+"\")'>收听</a>&nbsp;&nbsp;<a href='"+aData[7]+"'>下载</a>");
     		},"aoColumns": [
 				{"bSortable":false,"mDataProp":"0"},
 				{"mDataProp":"1"},

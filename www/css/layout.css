@@ -6,7 +6,7 @@
 _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/logo_call_out.png',sizingMethod='crop')}
 *html{padding-top:40px;}
 *html .frame-side{height:100%;}
-.frame-side{position:absolute;top:0px;left:0;z-index:2;height:auto; width:33px;background:rgba(162, 229, 237, 0.96);}
+.frame-side{position:absolute;top:0px;left:0;z-index:2;height:33px; width:100%;background:#F6F9FD;}
 
 .page-main{position:absolute;top:30px;left:0px;bottom:27px;right:0;height:90%;overflow:hidden;}
 .footer{line-height: 27px;background: url(../images/foot_bg.jpg) repeat-x left top;height: 27px;width: 100%;position: absolute;right: 0;bottom: 0;left: 0;}

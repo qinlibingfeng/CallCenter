@@ -216,7 +216,6 @@ class Report extends CI_Controller
 		$data['targetAgents']=$showAgents;
 		$this->load->view('report_leavemessage_view',$data);
 	}
-
 	
 	function ajaxReportCustomClientCount(){
 		header('Content-type: Application/json',true);
@@ -739,8 +738,7 @@ sum(case call_type when 'callin' then 1 else 0 end) as sumCallin";
 		$output["aaData"]=$datas;
 		
 		$sCount="select count(*) as sCount from $sTable $sWhere $sOrder";
-	
-
+		
 		$this->firephp->info($sCount);
 		
 		$ret=$this->db->query($sCount)->result_array();
@@ -869,15 +867,11 @@ sum(case call_type when 'callin' then 1 else 0 end) as sumCallin";
 		
 		$this->firephp->info($output["aaData"]);
 		
-		$sCount="select count(*) as sCount from $sTable $sWhere and is_leavemess=1 $sOrder";
-
-	
+		$sCount="select count(*) as sCount from $sTable $sWhere and is_leavemess=1 $sOrder ";
 		
 		$this->firephp->info($sCount);
 		
 		$ret=$this->db->query($sCount)->result_array();
-
-		//echo $ret[0]["sCount"];
 	
 		
 		$output["iTotalRecords"]=$output["iTotalDisplayRecords"]=$ret[0]["sCount"];
@@ -897,7 +891,7 @@ sum(case call_type when 'callin' then 1 else 0 end) as sumCallin";
 		
 		$searchObject=json_decode($req['filterString']);
 		
-		$aColumns = array('agent','name','phone_number','call_type' ,'status', 'call_exten','link_stime','alloted','autoid');
+		$aColumns = array('agent','name','phone_number','call_type' ,'status', 'call_exten','link_stime','autoid');
 		
 		$sLimit=$this->datatabes_helper->getPageSql($req);
 		//获得where语句
@@ -927,7 +921,7 @@ sum(case call_type when 'callin' then 1 else 0 end) as sumCallin";
 		$sLimit ";
 	
 		$this->firephp->info($sQuery);
-	//	echo $sQuery;
+		
 		$ret=$this->db->query($sQuery);	
 		
 		$output["aaData"]=$this->datatabes_helper->reverseResult($ret->result_array(),$aColumns,'autoid');
@@ -945,133 +939,5 @@ sum(case call_type when 'callin' then 1 else 0 end) as sumCallin";
 		
 		echo json_encode($output);
 	}
-	function ajaxAllotMisscall(){	
-		header('Content-type: Application/json',true);
-		$this->load->library('firephp');
-		
-		$req=$this->input->post();
-		$searchObject=json_decode($req['filterString']);
-		$this->firephp->info($searchObject);	
-			
-		$this->load->library('Agent_helper',array('agent_id'=>$searchObject->agentId));
-		
-		$setData=$this->agent_helper->getReportAgentsCanShow();
-		array_push($setData[3],'0000');
-		array_push($searchObject->searchText,$setData);
-		
-
-		$setData2 = array('and','varchar','alloted','N');
-		array_push($searchObject->searchText,$setData2);	
-		
-		
-		$sWhere=$this->datatabes_helper->getSearchSql($searchObject->searchText);
-		
-		$aColumns = array('autoid','phone_number','call_type' ,'status' ,'link_stime');
-		$sOrder=$this->datatabes_helper->getOrderSql($req,$aColumns,'link_stime','desc');
-		$sTable="cc_call_history left join agents on cc_call_history.agent=agents.code";
-		$sQuery1 = "
-		SELECT distinct(phone_number)
-		FROM   $sTable
-		$sWhere
-		$sOrder";
-	
-
-		$sTable="cc_call_history left join agents on cc_call_history.agent=agents.code left join clients on cc_call_history.phone_number = clients.client_cell_phone ";
-		$sQuery2 = "
-		SELECT distinct(phone_number), clients.client_agent
-		FROM   $sTable
-		$sWhere  and clients.client_id !='' 
-		$sOrder";
-
-		//echo $sQuery;
-		$this->firephp->info($sQuery2);	
-		$data=$this->db->query($sQuery2)->result_array();
-		$row_count = count($data);	
-
-		$agents=json_decode($req['agents']);
-		$this->firephp->info($agents);	
-		$agents_count = count($agents);
-
-		for($j=0; $j < $row_count;$j ++){			
-				
-			$this->allotAgents($data[$j]["phone_number"], $agents[$j]);
-			//echo $data[$j]["phone_number"]." ---> ".$data[$j]["client_agent"]."..\n";
-			
-		}
-
-
-		$this->firephp->info($sQuery1);	
-		$data=$this->db->query($sQuery1)->result_array();
-
-		$row_count = count($data);	
-		echo $row_count;
-
-		
-		//echo "\nagents_count: $agents_count\n";
-		
-	
-
-		for($j=0; $j <= $row_count - $agents_count; $j = $j+$agents_count){			
-			for($i=0; $i< $agents_count; $i++){			
-					$this->allotAgents($data[$j+$i]["phone_number"], $agents[$i]);
-					//echo $data[$j+$i]["phone_number"]." ---> ". $agents[$i] ."\n";
-			}			
-		}
-			
-		
-	
-		$ret["ok"]=1;
-		$ret["left"]= $row_count - $j;
-		echo json_encode($ret);		
-	}
-
-	
-	
-	function ajaxGetAllAgents(){	
-		header('Content-type: Application/json',true);
-		$this->load->library('firephp');
-		
-		
-		$sQuery = "
-		SELECT code, name from agents  where out_display_number_id !='' order by name asc  ";
-		$data=$this->db->query($sQuery)->result_array();
-
-		$ret["data"]=$data;
-		echo json_encode($ret);		
-	}	
-	
-	function allotAgents($number,$agentcode){
-		header('Content-type: Application/json',true);
-		$this->load->library('firephp');
-		
-		$sCount = "select count(*) from clients where client_cell_phone='$number'";
-		$ret=$this->db->query($sCount)->result_array();
-
-		//添加
-		if($ret[0]["count(*)"] == 0){
-			$today = date('Y-m-d h:i:s',time());
-			$sQuery = "insert into clients(client_agent, client_cell_phone, client_ctime) values('$agentcode', '$number', '$today')";	
-			$this->db->query($sQuery);
-		}
-		
-		$sCount = "select count(*) from clients_wait where client_id=(select client_id from  clients where client_cell_phone='$number' order by client_id ASC LIMIT 1)";
-		$ret=$this->db->query($sCount)->result_array();
-
-		//添加
-		if($ret[0]["count(*)"] == 0){
-			
-			$sQuery="insert into clients_wait (client_id,add_time) values((select client_id from  clients where client_cell_phone='$number'),now())";
-			$this->db->query($sQuery);
-		}else{
-			$sQuery="update clients_wait set add_time=now() where client_id=(select client_id from  clients where client_cell_phone='$number' order by client_id ASC LIMIT 1)";
-			$this->db->query($sQuery);
-		}
-		//
-		//$sQuery="delete from cc_call_history where phone_number='$number'";
-		$sQuery="update cc_call_history set alloted= 'Y' where phone_number='$number'";
-		$this->db->query($sQuery);
-			
-	}
-
 	
 }

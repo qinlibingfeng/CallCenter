@@ -13,8 +13,9 @@ $(document).ready(function(){
 	
 	//$("#vicidial_campaign_id").val(window.parent.parent.document.getElementById('vicidial_campaign_id').value);
 	$('#btnSaveClient').click(function(){
+
 		var $req={'field':[],'fieldValue':[],'agentId':'', 'campaignId':''};
-		$req.field=['client_name','client_person_card','client_phone','client_cell_phone'];
+		$req.field=['client_name','client_sfz','client_phone','client_cell_phone'];
 		$req.fieldValue=jQuery.parseJSON(getDatas($req.field,0));
 		$req.agentId="<?php echo $agentId;?>";
 		$req.campaignId=window.parent.parent.document.getElementById('vicidial_campaign_id').value;
@@ -64,7 +65,7 @@ $(document).ready(function(){
 					<table  class='property' >
 					<tr>
 						<td class='name' >真实姓名:</td><td class='value'> <input id='client_name' name='name'  style='width:100%;' value='<?php echo isset($item[0]->name)?$item[0]->name:'' ;?>'  type='text'></td>
-						<td class='name'>身份证:</td><td class='value'><input id='client_person_card' name='sex' value='' style='width:100%;' type='text'></td>
+						<td class='name'>身份证:</td><td class='value'><input id='client_sfz' name='sex' value='' style='width:100%;' type='text'></td>
 					</tr>
 					<tr>
 						<td class='name'>固话: </td><td class='value'> <input id='client_phone' name='phone'  value="<?php echo isset($item[0]->cell_phone)?$item[0]->cell_phone:'';?>" style='width:100%;' type='text'></td>

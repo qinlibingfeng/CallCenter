@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/ccms/CallCenter';
+$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/ccms/CallCenter_nsh';
 
 /*
 |--------------------------------------------------------------------------

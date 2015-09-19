@@ -60,8 +60,8 @@ $show_his_tab = "Y";
 //录音文件地址及端口号
 if($sys_os=="centos"){
 	
- 	$record_ip="http://77.36.0.225/RECORDINGS/";
-	$record_web="http://77.36.0.225/records/";
+ 	$record_ip="http://172.17.1.90/RECORDINGS/";
+	$record_web="http://172.17.1.90/records/";
 	
 	$record_location="replace(d.location,'".$record_ip."','".$record_web."') ";
 	

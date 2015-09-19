@@ -41,7 +41,7 @@
 	<div>已存在字段：</div>
 	<table id="side_tab" class="dataTable">
 
-	<tr><td><font size="4">字段名</font></td><td><font size="4">操作</font></td></tr>
+	<tr><td><font size="4">字段名</font></td> <td><font size="4">id</font></td> <td><font size="4">操作</font></td></tr>
 	<tbody> </tbody>
 
 	</table>
@@ -59,8 +59,8 @@
 				<select name="type" id="client_type">
 					<option value="2" selected="">下拉框</option>
 					<option value="1">文本编辑框</option>
-					<option value="5">文本编译域</option>
-					<option value="6">文本地址域</option>
+					<option value="6">文本编译域</option>
+					<option value="8">时间选择域</option>
 
 				</select>
 				</td></tr>
@@ -93,6 +93,8 @@
 		$("#side_tab  tr:not(:first)").empty();
 		$.each(list, function(index,values){
 			var str = '<tr><td><font size="4">'+index.substr(0,index.length-1)+'</font></td>';
+			//var str += '<td><font size="4">'+"111"+'</font></td>';
+			
 			if(values == 'client_cell_phone')
 			{
 				str += '<td><font size="4">默认字段</font><td></tr>';
