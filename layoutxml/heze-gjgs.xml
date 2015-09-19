@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dynamicui>
+<clientSearchPanel>
+	<row>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>名字:</name>			
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>状态</valuesource>
+		</item>
+		<item>
+			<id>client_person_card</id>
+			<dbfield>client_person_card</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>身份证:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource></valuesource>
+		</item>	
+		<item>
+			<id>client_wtlx</id>
+			<dbfield>client_wtlx</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>问题类型:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>问题类型</valuesource>
+		</item>	
+		<item>
+			<id>client_agent</id>
+			<dbfield>client_agent</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>坐席:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>坐席</valuesource>
+		</item>	
+	</row>
+		
+</clientSearchPanel>
+<customSearchPanel>
+	<row>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>名字:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>状态</valuesource>
+		</item>
+		<item>
+			<id>client_wtlx</id>
+			<dbfield>client_wtlx</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>问题类型：</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>问题类型</valuesource>
+		</item>	
+		<item>
+			<id>client_agent</id>
+			<dbfield>client_agent</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>2</type>
+			<name>坐席:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource>坐席</valuesource>
+		</item>	
+	
+	</row>
+</customSearchPanel>
+
+<customBodyPanel>
+<item>
+	<id>client_name</id>
+	<dbfield>client_name</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>名字</name>
+</item>
+<item>
+	<id>client_sex</id>
+	<dbfield>client_sex</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>性别</name>
+</item>
+<item>
+	<id>client_ctime</id>
+	<dbfield>client_ctime</dbfield>
+	<align>left</align>
+	<width>180px</width>
+	<type>varchar</type>
+	<name>创建时间</name>
+</item>
+<item>
+	<id>client_wtlx</id>
+	<dbfield>client_wtlx</dbfield>
+	<align>left</align>
+	<width></width>
+	<type>varchar</type>
+	<name>问题类型</name>
+</item>
+
+<item>
+	<id>client_fywenti</id>
+	<dbfield>client_fywenti</dbfield>
+	<align>left</align>
+	<width></width>
+	<type>varchar</type>
+	<name>反应问题</name>
+</item>
+<item>
+	<id>client_agent</id>
+	<dbfield>client_agent</dbfield>
+	<align>left</align>
+	<width>60</width>
+	<type>varchar</type>
+	<name>坐席</name>
+</item>
+</customBodyPanel>
+<customClientStatusCount>
+	<item>
+		<dbfield>client_zsstatus</dbfield>
+		<valuesource>状态</valuesource>
+	</item>
+</customClientStatusCount>
+<importDBMap>
+		<item>		
+			<dbfield>client_excel_id</dbfield>
+			<name>序号</name>	
+		</item>
+		<item>		
+			<dbfield>client_name</dbfield>
+			<name>姓名</name>	
+		</item>
+		<item>
+			<dbfield>client_sex</dbfield>
+			<name>性别</name>
+		</item>
+	
+		<item>
+			<dbfield>client_person_card</dbfield>
+			<name>身份证</name>
+		</item>
+		<item>
+			<dbfield>client_address</dbfield>
+			<name>地址</name>
+		</item>	
+
+		
+	
+		<item>
+			<dbfield>client_cell_phone</dbfield>
+			<name>手机</name>
+		</item>	
+		<item>
+			<dbfield>client_phone</dbfield>
+			<name>固话</name>
+		</item>	
+		
+		<item>
+			<dbfield>client_agent</dbfield>
+			<name>坐席号</name>
+		</item>	
+			
+</importDBMap>
+<baseInfoTable>
+	<row>
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<type>2</type>
+			<name>反应人姓名:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource>0</valuesource>
+		</item>
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<type>2</type>
+			<name>性别:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource>0</valuesource>
+		</item>
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<type>1</type>
+			<name>姓名:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource>0</valuesource>
+		</item>
+	</row>
+</baseInfoTable>
+<bussniessInfoTable>
+<row>	
+		<item>
+			<id>client_name</id>
+			<dbfield>client_name</dbfield>
+			<type>1</type>
+			<name>反应人姓名:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource>0</valuesource>
+		</item>
+		<item>
+			<id>client_sex</id>
+			<dbfield>client_sex</dbfield>
+			<type>2</type>
+			<name>性别:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource>性别</valuesource>
+			
+		</item>
+		<item>
+			<id>client_xianlu</id>
+			<dbfield>client_xianlu</dbfield>
+			<type>1</type>
+			<name>线路:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource></valuesource>
+		</item>
+		
+	</row>
+	<row>
+		<item>
+			<id>client_cpcard</id>
+			<dbfield>client_cpcard</dbfield>
+			<type>1</type>
+			<name>车牌号:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource></valuesource>
+		</item>
+		<item>
+			<id>client_cell_phone</id>
+			<dbfield>client_cell_phone</dbfield>
+			<type>1</type>
+			<name>手机:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource></valuesource>
+		</item>	
+		<item>
+			<id>client_phone</id>
+			<dbfield>client_phone</dbfield>
+			<type>1</type>
+			<name>固话:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource></valuesource>
+		</item>
+	</row>	
+	<row>	
+		<item>
+			<id>client_fstime</id>
+			<dbfield>client_fstime</dbfield>
+			<type>1</type>
+			<name>发生时间:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width></width>
+			<height></height>
+			<valuesource></valuesource>
+		</item>	
+		<item>
+			<id>client_weizhi</id>
+			<dbfield>client_weizhi</dbfield>
+			<type>1</type>
+			<name>位置:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+		</item>	
+		<item>
+			<id>client_fangxiang</id>
+			<dbfield>client_fangxiang</dbfield>
+			<type>1</type>
+			<name>方向:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+		</item>	
+	</row>	
+	<row>
+		<item>
+			<id>client_fywenti</id>
+			<dbfield>client_fywenti</dbfield>
+			<type>5</type>
+			<name>反应问题:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+		</item>		
+		<item>
+			<id>client_note</id>
+			<dbfield>client_note</dbfield>
+			<type>5</type>
+			<name>备注:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+		</item>	
+		<item>
+			<id>client_wtlx</id>
+			<dbfield>client_wtlx</dbfield>
+			<type>2</type>
+			<name>问题类型:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource>问题类型</valuesource>
+		</item>			
+	</row>
+</bussniessInfoTable>
+<orderTableSearchPanel>
+	<row>	
+		<item>
+			<id>client_qsyijan</id>
+			<dbfield>client_qsyijan</dbfield>
+			<dbtype>varchar</dbtype>
+			<type>1</type>
+			<name>签署意见:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<valuesource></valuesource>
+		</item>	
+   </row>
+</orderTableSearchPanel>
+
+<orderTable>
+<item>
+	<id>order_id</id>
+	<dbfield>order_id</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>单号</name>
+</item>
+<item>
+	<id>client_qsyijan</id>
+	<dbfield>client_qsyijan</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>签署意见</name>
+</item>
+
+<item>
+	<id>client_dccl</id>
+	<dbfield>client_dccl</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>调查处理</name>
+</item>
+<item>
+	<id>client_huifu</id>
+	<dbfield>client_huifu</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>回复</name>
+</item>
+
+<item>
+	<id>order_ctime</id>
+	<dbfield>order_ctime</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>保单时间</name>
+</item>
+
+<item>
+	<id>client_id</id>
+	<dbfield>client_id</dbfield>
+	<align>left</align>
+	<width>50px</width>
+	<type>varchar</type>
+	<name>处理</name>
+</item>
+
+</orderTable>
+<orderProcessTable>
+<row>
+	<item>
+			<id>client_qsyijan</id>
+			<dbfield>client_qsyijan</dbfield>
+			<type>5</type>
+			<name>签署意见:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+	</item>	
+	<item>
+			<id>client_dccl</id>
+			<dbfield>client_dccl</dbfield>
+			<type>5</type>
+			<name>调查处理:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+	</item>	
+	<item>
+			<id>client_huifu</id>
+			<dbfield>client_huifu</dbfield>
+			<type>5</type>
+			<name>回复:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource></valuesource>
+	</item>	
+	
+</row>
+<row>
+	<item>
+			<id>order_status</id>
+			<dbfield>order_status</dbfield>
+			<type>2</type>
+			<name>工单状态:</name>
+			<colspan>1</colspan>
+			<lspace>0</lspace>
+			<width>160px</width>
+			<height>60px</height>
+			<valuesource>工单状态</valuesource>
+	</item>	
+</row>
+</orderProcessTable>
+</dynamicui>

@@ -1,0 +1,28 @@
+姓名	号码	自定义1	自定义2
+wzh1	500008	fwzh	fwzh2
+wzh2	500008	f41	f42
+wzh3	500008	fwzh	fwzh2
+wzh4	500008	f41	f42
+wzh5	500008	fwzh	fwzh2
+wzh6	500008	f41	f42
+wzh7	500008	fwzh	fwzh2
+wzh8	500008	f41	f42
+wzh9	500008	fwzh	fwzh2
+wzh0	500009	f41	f42
+wzh11	500007	fwzh	fwzh2
+wzh12	500006	f41	f42
+wzh13	500008	fwzh	fwzh2
+wzh14	500008	f41	f42
+wzh15	500008	fwzh	fwzh2
+wzh16	500008	f41	f42
+
+
+
+
+
+
+
+
+
+
+

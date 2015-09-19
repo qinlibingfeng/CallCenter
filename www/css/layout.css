@@ -1,0 +1,34 @@
+/* CSS Document */
+
+.frame-header{display:none;position:fixed;_position:absolute;top:0;right:0;left:0px;z-index:2;width:100%;min-width:900px;height:38px;background: url(../images/main_head_bg.jpg) 0 0;line-height: 38px;border-top: none;border-right: none;border-bottom: none;border-left: none;}
+.frame-logo{position:absolute;top:4px;left:6px;}
+.frame-logo a{float:left;width:210px;height:32px;line-height:32;font-size:12px;overflow:hidden;background:url(/images/logo_call_out.png) no-repeat 0 0!important;_background-image:none;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/logo_call_out.png',sizingMethod='crop')}
+*html{padding-top:40px;}
+*html .frame-side{height:100%;}
+.frame-side{position:absolute;top:0px;left:0;z-index:2;height:auto; width:33px;background:rgba(162, 229, 237, 0.96);}
+
+.page-main{position:absolute;top:30px;left:0px;bottom:27px;right:0;height:90%;overflow:hidden;}
+.footer{line-height: 27px;background: url(../images/foot_bg.jpg) repeat-x left top;height: 27px;width: 100%;position: absolute;right: 0;bottom: 0;left: 0;}
+.footer .welcome{float: left;height: 27px;width: 104px;margin-left: 16px;}
+.footer .copyright{float: left;height: 26px;width: 72%;text-align: center;padding-left: 30px;color: #666;}
+.footer .version{float: right;width: 91px;margin-right: 16px;line-height: 26px;background: url(../images/version.jpg) no-repeat left top;height: 27px;padding-right: 12px;padding-left: 16px;color: #5480A3;}
+.side-switcher{display:none;width:13px;height:30px;line-height:10;overflow:hidden;border-radius:3px 0 0 3px;background:url(../images/side_switcher.png);background-repeat:no-repeat;background-position:0 0;box-shadow:0 1px 3px rgba(0, 0, 0, 0.2);position:absolute;left:155px;top:42%;z-index:20;}
+
+.side-switcher:hover{background-position:0 -30px;} 
+
+.side-close{background-position:-13px 0;}
+.side-close:hover{background-position:-13px -30px;} 
+.head_menu .logo{float:left;height:34px;width:264px;margin-top:5px;background:url(../images/logo_call_out.png) no-repeat left -1px!important;_background-image:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/logo_call_out.png',sizingMethod='crop');display:inline;margin-left:4px;cursor:pointer;}
+.head_menu .head_info{float:right;height:40px;}
+.head_menu .round_{background:url(../images/head_menu_bg.png) no-repeat right bottom;float:right;height:32px;margin-top:2px;margin-right:6px;display:inline;position:relative;overflow:hidden;}
+.head_menu .round_ .round_main{background:url(../images/head_menu_bg.png) no-repeat left top;height:32px;padding-right:4px;float:left;padding-left:4px;}
+.head_menu .head_info #callnumber{line-height:18px;height:18px;margin-top:4px;background:#FFF;font-size:14px;}
+.head_menu .head_notice_img{float:left;height:22px;width:24px;margin-top:2px;padding-top:4px;}
+.head_menu .head_notice{float:left;width:140px;}
+.head_menu .head_notice ul{height:28px;overflow:hidden;margin-top:3px;}
+.head_menu .head_notice li{line-height:14px;text-align:left;display:inline;float:left;height:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:140px;}
+.head_menu .head_notice li:after{content:"...";}
+.s_option{width:160px; height:20px; margin-top:7px}
+
+

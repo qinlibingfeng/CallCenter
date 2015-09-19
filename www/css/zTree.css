@@ -1,0 +1,11 @@
+
+
+div.content_wrap {width: 600px;height:380px;}
+div.content_wrap div.left{float: left;width: 250px;}
+div.content_wrap div.right{float: right;width: 340px;}
+div.zTreeDemoBackground {width:250px;height:362px;text-align:left;}
+div.menuContent{
+	background-color: #F7FAFC;
+	border: 1px solid;
+	
+}

@@ -1,0 +1,87 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">  
+	<title>左右布局（右侧定宽，左侧自适应宽）</title>  
+	<style type="text/css">  
+		body{font:12px arial;color:#fff;background:#fff;margin:0} 
+		
+		#header{height:50px;color:#fff;background:#fff;text-align:center;line-height:50px;margin-bottom:10px}  
+
+		#side{width:230px;height:400px;color:#f00;background:#fff;float:left} 
+		
+		#content{width:100%;color:red;float:right;margin-right:-240px}  
+		#content_inner{height:400px;background:#fff;margin-right:240px} 
+		
+		#footer{height:50px;color:#fff;background:#fff;margin-top:10px}  
+		.clear{clear:both}  
+	</style>  
+</head>  
+  
+<body>  
+<div id="header"><h1><a href='#'>添加字段</a><h/1></div>  
+  
+  
+<div id="side">
+	<h1>字段名</h1>
+	<table width="100%" cellSpacing="1" cellPadding="0"  align="center" bgColor="#d1e3fe" border="0">
+	<ol>
+		<?php $i=0;?>
+		<?php foreach($list as $keys=>$values):?>
+		<?php $arr_n = count($list);?>
+		<?php $i++; ?>
+			
+				<li style="font-size:20px;">
+					<?php echo substr($keys,0,-1); ?>&nbsp;&nbsp;&nbsp;<font face="宋体" size="2">
+					<?php if($i == $arr_n):?>
+					<a href='<?php echo site_url('login/delete/'.$values);?>'>删除</a>
+					<?php endif;?>
+					</font>
+				</li>
+		<?php endforeach;?>	
+	</ol>
+	</table>
+
+</div> 
+
+<div id="content">  
+	<div id="content_inner" border-width:thin; background:yellow;>
+		
+		<form action="<?php echo site_url('login/comments');?>" mothod="post">
+		
+			<table border="5px"> 
+			
+				<tr><td><font size="4">字段名称</font></td><td><input type="text" name="name" /></td></tr>
+				<tr><td><font size="4">字段标题</font></td><td><input type="text" name="colspan" /></td></tr>		
+				<tr><td><font size="3">字段类型</font></td><td>
+				<select name="type" id="type">
+					<option value="2" selected="">下拉框</option>
+					<option value="1">文本编辑框</option>
+					<option value="6">文本编译域</option>
+					
+				</select> 
+				</td></tr>
+				<tr><td><font size="4">valuesource</font></td><td><input type="text" name="valuesource" /></td></tr>
+				<tr><td><font size="4">字段ID</font></td><td><input type="text" name="id" /></td></tr>
+				<tr><td><font size="4">字段存入名</font></td><td><input type="text" name="dbfield" /></td></tr>
+				<tr><td><font size="4">长度</font></td><td><input type="text" name="width" /></td></tr>
+				<tr><td><font size="4">高度</font></td><td><input type="text" name="height" /></td></tr>
+				<tr><td><font size="4">lspace</font></td><td><input type="text" name="lspace" /></td></tr>
+				</table>
+			  <input type="hidden" name="types" value="query" />
+			  <input type="submit" value="添加" />			  
+			</form>	  
+	</div>
+</div> 
+
+
+
+ 
+</body>  
+</html> 
+
+
+
+
+

@@ -1,0 +1,45 @@
+.dataTable img{cursor:pointer;}
+.field_list a{cursor:pointer;display:inline-block;float:left;height:16px;line-height:17px;margin:2px;padding:2px 2px 2px 20px;position:relative;text-align:center;color:#333;white-space:nowrap;background:url(/images/icons/icon022a1.gif) no-repeat left center;}
+.field_list a:hover{text-decoration:none;border:1px solid #F90;}
+a.close{width:4px;height:4px;line-height:4px;background:url(/images/tips/tip_bg.gif) no-repeat 0 -26px;position:absolute;right:-10px;top:4px;font-size:1px;border:0;}
+a.close:hover{background-position:0 -34px;border:0;}
+a.field_list_1{background-color:#FFF;border:1px solid #999;}
+a.field_list_2{background-color:#FC6;border:1px solid #F90;}
+.field_list_div{background:#FFF;border:2px solid #0C0;display:none;margin:3px auto auto 3px;padding:2px 4px 4px;position:absolute;top:0;width:97%;z-index:100;}
+.input_86{width:90%;}
+.turn_img{cursor:pointer;float:left;margin-left:6px;margin-top:4px;background: url(../../images/icons/up_down.gif) no-repeat right top;height: 14px;width: 16px;}
+.turn_img img{vertical-align:middle;}
+.page_main{_margin-top:-1px;}
+.page_main fieldset{margin:2px 8px 8px 8px;}
+.td_underline td{border-bottom: 1px dotted #ccc; height:24px;line-height:24px}
+.td_underline select{*margin-top:1px}
+.o_icos span{background:url(/images/icons/up_down.gif) no-repeat 2px top;display:block;height:14px;width:14px;float:left;margin-top:-2px;cursor:pointer;}
+.o_icos .up_e{background-position:-30px top;}
+.o_icos .up_d{background-position:-62px top;}
+.o_icos .dw_e{background-position:-14px top;}
+.o_icos .dw_d{background-position:-46px top;}
+.o_icos .add{background-position:-78px top;}
+.s_option {width:182px;*width:162px;}
+.s_option1 {width:182px;}
+#tree_list img{margin-right:2px;}
+#tree_list input{margin-right:2px;}
+span.gray,span.red{margin-left:4px}
+.dataTable .tr_write_bg{background:#FFF}
+.hide_tit{width:140px;}
+.highlight{padding:1px;background:#FFFF00;font-weight:bold;color:#000}
+
+.chart_toolbar{height:20px;line-height:20px;float:right}
+.chart_buttons{display:inline-block;*display:inline;*zoom:1;height:20px;line-height:0;border-radius:5px;transition:box-shadow linear .2s;-moz-transition:-moz-box-shadow linear .2s;-webkit-transition:-webkit-box-shadow linear .2s;outline:none}
+.chart_buttons:hover{-webkit-box-shadow:0 0 3px rgba(29, 79, 132, .2);box-shadow:0 0 3px rgba(29, 79, 132, .2)}
+.chart_buttons:hover a{border-color:#ABABAB}
+.chart_buttons a{display:inline-block;padding:5px 8px;*padding:3px 8px 4px 4px;font:12px/1.11;_font-size:12px;color:#3C3C3D;text-shadow:1px 1px 0 #FFFFFF;background:#ECECEC url('/images/css3buttons_backgrounds.png') 0 0 no-repeat;white-space:nowrap;overflow:visible;cursor:pointer;text-decoration:none;border:1px solid #CACACA;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;outline:none;position:relative;zoom:1;*display:inline;*vertical-align:middle;-moz-user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-select:none;-webkit-touch-callout:none}
+.chart_buttons a:hover{color:#FFFFFF;border-color:#388AD4;text-decoration:none;text-shadow:-1px -1px 0 rgba(0,0,0,0.3);background-position:0 -40px;background-color:#2D7DC5}
+.chart_buttons a:active{top:1px;background-position:0 -81px;border-color:#347BBA;background-color:#0F5EA2;color:#FFFFFF;text-shadow:none}
+a.chart_left{-webkit-border-bottom-right-radius:0px;-webkit-border-top-right-radius:0px;-moz-border-radius-bottomright:0px;-moz-border-radius-topright:0px;border-bottom-right-radius:0px;border-top-right-radius:0px;margin-right:0px;border-right:none}
+a.chart_right{margin-right:0px;margin-left:0px;-webkit-border-radius:0px;-moz-border-radius:0px;border-radius:0px;border-right:none}
+a.chart_source{-webkit-border-bottom-left-radius:0px;-webkit-border-top-left-radius:0px;-moz-border-radius-bottomleft:0px;-moz-border-radius-topleft:0px;border-top-left-radius:0px;border-bottom-left-radius:0px;margin-left:0px}
+a.chart_left:active, a.chart_right:active, a.chart_source:active{top:0px}
+.chart_buttons a span{display:inline-block;margin:-2px 4px auto -2px;*margin:auto 6px auto auto;position:relative;top:0;*top:0px;*font-size:0;vertical-align:middle}
+.chart_show{background:transparent;border:3px solid #FFF!important;border-radius:3px}
+a.chart_select{color:#FFFFFF;border-color:#388AD4;text-decoration:none;text-shadow:-1px -1px 0 rgba(0,0,0,0.3);background-position:0 -40px;background-color:#2D7DC5}
+#chart_con{width:99%;height:190px;margin-left:auto;margin-right:auto}

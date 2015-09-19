@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.cacher {behavior:url(#default#userdata);}</style>
+<script language="javascript"> 
+var flag=false;function shift_status(){if(flag){if(screen.width>1024)parent.document.getElementById("MainFrame").setAttribute("cols","154,8,*,0");else if(screen.width>800)parent.document.getElementById("MainFrame").setAttribute("cols","154,8,*,0");else parent.document.getElementById("MainFrame").setAttribute("cols","154,8,*,0");document.all.menuSwitch1.src='../images/right_left.jpg';document.all.menuSwitch1.title='隐藏'}else{parent.document.getElementById("MainFrame").setAttribute("cols","0,8,*,0");document.all.menuSwitch1.src='../images/left_right.jpg';document.all.menuSwitch1.title='显示'}flag=!flag}
+
+/*function set_tabs_width(){
+	window.parent.window.frames["Main"].set_tabs_width();
+}*/
+</script>
+</head>
+
+<body onClick="shift_status();" leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart ='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
+<span class="cacher" id="cacheData" name="cacheData"></span>
+<table border=0 height="100%" cellspacing="0" cellpadding="0" title="打开/关闭导航">
+<tr><td valign="middle" bgcolor="#EAF7FF" id="menuSwitch" style="cursor:pointer;" onMouseOver="this.style.backgroundColor='#BEDBE8'" onMouseOut="this.style.backgroundColor='#EAF7FF'" background="../images/control_frame_bg.jpg"><img src="../images/right_left.jpg" name="menuSwitch1" id="menuSwitch1"></td>
+  </tr>
+</table>
+</BODY>
+</html>

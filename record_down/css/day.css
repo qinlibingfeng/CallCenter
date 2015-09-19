@@ -1,0 +1,66 @@
+div.calendar{position:absolute;visibility: visible;margin-left: 2px;margin-top: 4px;}
+.calendar, .calendar table{border: 1px solid #206A9B; font-size: 11px; color: #000; cursor: default; background: #F1F8FC; font-family: tahoma,verdana,sans-serif; z-index: 9999; float: left;}
+.calendar .button{text-align: center; padding: 2px;}
+.calendar .nav{background: #007ED1 ;}
+.calendar thead .title{font-weight: bold; text-align: center; background: #000; color: #fff; padding: 2px;}
+.calendar thead tr{background: #007ED1; color: #fff;}
+.calendar thead .daynames{background: #C7E1F3;}
+.calendar thead .name{border-bottom: 1px solid #206A9B; padding: 2px; text-align: center; color: #000;}
+.calendar thead .weekend{color: #a66;}
+.calendar thead .hilite{background-color: #34ABFA; color: #000; border: 1px solid #016DC5; padding: 1px;}
+.calendar thead .active{background-color: #006AA9; border: 1px solid #008AFF; padding: 2px 0px 0px 2px;}
+.calendar tbody .day{width: 2em; color: #456; text-align: right; padding: 2px 4px 2px 2px;}
+.calendar tbody .day.othermonth{font-size: 80%; color: #bbb;}
+.calendar tbody .day.othermonth.oweekend{color: #fbb;}
+.calendar table .wn{padding: 2px 3px 2px 2px; border-right: 1px solid #000; background: #C7E1F3;}
+.calendar tbody .rowhilite td{background: #def;}
+.calendar tbody .rowhilite td.wn{background: #F1F8FC;}
+.calendar tbody td.hilite{background: #def; padding: 1px 3px 1px 1px; border: 1px solid #8FC4E8;}
+.calendar tbody td.active{background: #cde; padding: 2px 2px 0px 2px;}
+.calendar tbody td.selected{font-weight: bold; border: 1px solid #000; padding: 1px 3px 1px 1px; background: #fff; color: #000;}
+.calendar tbody td.weekend{color: #a66;}
+.calendar tbody td.today{font-weight: bold; color: #D50000;}
+.calendar tbody .disabled{color: #999;}
+.calendar tbody .emptycell{visibility: hidden;}
+.calendar tbody .emptyrow{display: none;}
+.calendar tfoot .footrow{text-align: center; background: #206A9B; color: #fff;}
+.calendar tfoot .ttip{background: #000; color: #fff; border-top: 1px solid #206A9B; padding: 1px;}
+.calendar tfoot .hilite{background: #B8DAF0; border: 1px solid #178AEB; color: #000; padding: 1px;}
+.calendar tfoot .active{background: #006AA9; padding: 2px 0px 0px 2px;}
+.calendar .combo{position: absolute; display: none; top: 0px; left: 0px; width: 4em; cursor: default; border: 1px solid #655; background: #def; color: #000; font-size: 90%; z-index: 9999;}
+.calendar .combo .label,
+.calendar .combo .label-IEfix{text-align: center; padding: 1px;}
+.calendar .combo .label-IEfix{width: 4em;}
+.calendar .combo .hilite{background: #34ABFA; border-top: 1px solid #46a; border-bottom: 1px solid #46a; font-weight: bold;}
+.calendar .combo .active{border-top: 1px solid #46a; border-bottom: 1px solid #46a; background: #F1F8FC; font-weight: bold;}
+.calendar td.time{border-top: 1px solid #000; padding: 1px 0px; text-align: center; background-color: #E3F0F9;}
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm{padding: 0px 3px 0px 4px; border: 1px solid #889; font-weight: bold; background-color: #F1F8FC;}
+.calendar td.time .ampm{text-align: center;}
+.calendar td.time .colon{padding: 0px 2px 0px 3px; font-weight: bold;}
+.calendar td.time span.hilite{border-color: #000; background-color: #267DB7; color: #fff;}
+.calendar td.time span.active{border-color: red; background-color: #000; color: #A5FF00;}
+.chart_toolbar{height:20px;line-height:20px;float:right}
+.chart_buttons{display:inline-block;*display:inline;*zoom:1;height:20px;line-height:0;border-radius:5px;transition:box-shadow linear .2s;-moz-transition:-moz-box-shadow linear .2s;-webkit-transition:-webkit-box-shadow linear .2s;outline:none}
+.chart_buttons:hover{-webkit-box-shadow:0 0 3px rgba(29, 79, 132, .2);box-shadow:0 0 3px rgba(29, 79, 132, .2)}
+.chart_buttons:hover a{border-color:#ABABAB}
+.chart_buttons a{display:inline-block;padding:5px 8px;*padding:3px 8px 4px 4px;font:12px/1.11;_font-size:12px;color:#3C3C3D;text-shadow:1px 1px 0 #FFFFFF;background:#ECECEC url('/images/css3buttons_backgrounds.png') 0 0 no-repeat;white-space:nowrap;overflow:visible;cursor:pointer;text-decoration:none;border:1px solid #CACACA;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;outline:none;position:relative;zoom:1;*display:inline;*vertical-align:middle;-moz-user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-select:none;-webkit-touch-callout:none}
+.chart_buttons a:hover{color:#FFFFFF;border-color:#388AD4;text-decoration:none;text-shadow:-1px -1px 0 rgba(0,0,0,0.3);background-position:0 -40px;background-color:#2D7DC5}
+.chart_buttons a:active{top:1px;background-position:0 -81px;border-color:#347BBA;background-color:#0F5EA2;color:#FFFFFF;text-shadow:none}
+a.chart_left{-webkit-border-bottom-right-radius:0px;-webkit-border-top-right-radius:0px;-moz-border-radius-bottomright:0px;-moz-border-radius-topright:0px;border-bottom-right-radius:0px;border-top-right-radius:0px;margin-right:0px;border-right:none}
+a.chart_right{margin-right:0px;margin-left:0px;-webkit-border-radius:0px;-moz-border-radius:0px;border-radius:0px;border-right:none}
+a.chart_source{-webkit-border-bottom-left-radius:0px;-webkit-border-top-left-radius:0px;-moz-border-radius-bottomleft:0px;-moz-border-radius-topleft:0px;border-top-left-radius:0px;border-bottom-left-radius:0px;margin-left:0px}
+a.chart_left:active,a.chart_right:active, a.chart_source:active{top:0px}
+.chart_buttons a span{display:inline-block;margin:-2px 4px auto -2px;*margin:auto 6px auto auto;position:relative;top:0;*top:0px;*font-size:0;vertical-align:middle}
+.chart_show{background:transparent;border:3px solid #FFF!important;border-radius:3px}
+a.chart_select{color:#FFFFFF;border-color:#388AD4;text-decoration:none;text-shadow:-1px -1px 0 rgba(0,0,0,0.3);background-position:0 -40px;background-color:#2D7DC5}
+#chart_f_list{width:340px;border:1px solid #709CBE;position:absolute;right:0px;background:#FFF;z-index:12;margin-top:26px;display:none;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);}
+#chart_f_list li{display:inline-block;float:left;width:32%;line-height:20px;height:20px}
+#chart_f_list .head{background:#F1F7FC;width:100%;border-bottom:1px solid #C5C5C5;position:relative;line-height:22px;height:22px;float:left}
+#chart_f_list .bottom{background:#F1F7FC;width:100%;border-top:1px solid #C5C5C5;position:relative;line-height:24px;height:26px;text-align:right;float:left}
+#chart_f_list ul{width:99%;position:relative;padding:2px;float:left}
+#chart_f_list a.close{width:20px;height:20px;line-height:20px;background:url(/images/agent_c/ico_side.png) no-repeat -23px 0px;display:inline;position:absolute;right:3px;top:1px;cursor:pointer;font-size:1px}
+#chart_f_list a.close:hover{background-position:-23px -23px}
+#chart_f_list .chart_c_line{line-height:20px;height:20px;border-bottom:1px dotted #CCC;float:left;width:100%}
+#chart_con{width:auto;height:340px;margin-right:auto;margin-left:auto;display: none;}
